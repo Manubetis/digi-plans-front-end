@@ -48,7 +48,6 @@ Cubrirá las siguientes necesidades:
   - Eliminación de aburrimiento y inseguridad de socializar he no saber que hacer en el día a día.
   - Proporcionar una plataforma segura y confiable a la hora de meter datos personales en los registros de usuario.
 
-
 ## Estructura del Proyecto
 
 Al realizar mi proyecto en el Frontend con el framework Angular y la API REST con Express, mi estructura del directorio en el repositorio de Github es la siguinte:
