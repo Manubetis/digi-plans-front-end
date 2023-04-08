@@ -32,14 +32,14 @@ La experiencia positiva y atractiva para los clientes se centrará en lo siguien
 
   1. El contenido de la aplicación web girará entorno a los eventos creados de distintas categorías posibles, será interesante, informativo y fácil de entender.
   2. Navegación intuitiva para el usuario por la página web.
-  3. Página web funcional e usable.
+  3. Página web funcional he usable.
   4. Nuestra página web proporcionará una carga rápida.
 
 Nuestra aplicación resolverá varios problemas a los usuarios como los siguientes:
 
   - Falta de socialización.
   - Saber como y donde gastar el tiempo libre de cada persona.
-  - Siempre hay momentos en nuestros días que no sabemos que hacer y está aplicación ayudará a ofrecerte planes para hacer y crearlos poque también hay planes que quieres hacer pero te faltan personas para poder realizarlos.
+  - Siempre hay momentos en nuestros días que no sabemos que hacer y esta aplicación ayudará a ofrecerte planes para hacer y crearlos, poque también hay planes que quieres hacer pero te faltan personas para poder realizarlos.
 
 Cubrirá las siguientes necesidades:
 
@@ -50,7 +50,7 @@ Cubrirá las siguientes necesidades:
 
 ## Estructura del Proyecto
 
-Al realizar mi proyecto en el Frontend con el framework Angular y la API REST con Express, mi estructura del directorio en el repositorio de Github es la siguinte:
+Al realizar mi proyecto en el Frontend con el framework Angular y la API REST con Express, mi estructura del directorio en el repositorio de Github es la siguiente:
 
 - src-api
 - src-frontend
