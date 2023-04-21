@@ -1,0 +1,34 @@
+form{
+    background-color: #333333;
+    color: white;
+}
+
+section[width="380px"], a[class="sidebar-branding__StyledLogo-sc-1ozeetj-0 hjlwTQ admin-bro_Logo"], 
+section[class="sc-dIsAE top-bar__NavBar-sc-1qk1nql-0 fbPpRS djceEc admin-bro_NavBar"],
+section[class="sc-hhIhEF eqWAhy"],
+section[class="sc-dIsAE nrYdW admin-bro_Box"],
+a[href="https://join.slack.com/t/adminbro/shared_invite/zt-djsqxxpz-_YCS8UMtQ9Ade6DPuLR7Zw"],
+a[href="https://github.com/SoftwareBrothers/admin-bro/issues"]{
+    background-color: #FF4A4A;
+}
+
+section[class="sc-dIsAE VxfNd admin-bro_Resources"],
+section[class="sc-dIsAE brtgQr admin-bro_Box"],
+section[class="sc-lbVuaH jEbEsB"],
+a[class="sc-dIsAE default-dashboard__Card-y6jxa9-0 kgyQN kKlyvT admin-bro_Box"],
+form[class="sc-dIsAE khLjzP admin-bro_Box"]{
+    background-color: #333333;
+    color: white;
+}
+
+section[class="sc-dIsAE brtgQr admin-bro_Box"] table{
+    background-color: white;
+}
+
+a[class="sc-dIsAE sc-ArjOu bJcshk crtAEj admin-bro_Box"]{
+    color: white;
+}
+
+section[class="sc-lbVuaH jEbEsB"] section{
+    color: black;
+}
