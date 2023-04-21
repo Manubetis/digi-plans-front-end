@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-md-4">
+        <img src="../../../assets/img/stairs-gf8ff77dc1_1280.jpg" id="ImagenRegistro" alt="Imagen fondo registro">
+    </div>
+    <div class="col-md-7 mt-4 mb-4 p-4" id="registro">
+            <h3 class="border-bottom pb-4 mb-3" style="color: white">Registrarse</h3>
+            <div class="p-5">
+                <form (submit)="signUp()">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre y apellidos</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="nombreApellidos" [(ngModel)]="user.nombreApellidos" placeholder="Nombre y apellidos" required>
+                        </div>                      
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Contraseña</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-eye-slash"></i></span>
+                            <input type="password" class="form-control" id="exampleFormControlInput2" name="password" [(ngModel)]="user.password" placeholder="Contraseña" required>
+                        </div>                       
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Fecha de nacimiento</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                            <input type="date" class="form-control" id="exampleFormControlInput3" name="fechaNacimiento" [(ngModel)]="user.fechaNacimiento" placeholder="Fecha de nacimiento" required>
+                        </div>                        
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Localidad</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                            <input type="text" class="form-control" id="exampleFormControlInput4" name="localidad" [(ngModel)]="user.localidad" placeholder="Localidad" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Correo electrónico</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input type="email" class="form-control" id="exampleFormControlInput5" name="email" [(ngModel)]="user.email" placeholder="name@example.com" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary d-flex justify-content-end">Enviar</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>

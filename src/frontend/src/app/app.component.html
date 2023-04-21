@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navBar">
+  <div class="container-fluid">
+    <a routerLink="/"><img src="../assets/img/logo_digi-plans_texto-removebg-preview.png" id="logoTexto" alt="Logo DDigi-plans texto"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+          <li class="nav-item" id="apartadosNav">
+            <a class="nav-link" routerLink="/signin" routerLinkActive="active">INICIAR SESIÓN</a>
+          </li>
+          <li class="nav-item" id="apartadosNav">
+            <a class="nav-link" routerLink="/signup" routerLinkActive="active">REGISTRARSE</a>
+          </li>
+        </ng-container>
+        <ng-template #loggedIn>
+          <li class="nav-item" id="apartadosNav">
+            <a class="nav-link " (click)="authService.logOut()" routerLinkActive="active">CERRAR SESIÓN</a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer class="py-5 container-fluid" id="footer">
+  <div class="row py-4 my-4 border-top">
+    <div class="col">
+      <h5>SECCIONES PRINCIPALES</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+          <a href="tasks" class="nav-link p-0 text-muted">Home</a>
+        </li>
+        <ng-container *ngIf="authService.loggedIn(); else loggedOut"></ng-container>
+        <ng-template #loggedOut>
+          <li class="nav-item mb-2">
+            <a href="signin" class="nav-link p-0 text-muted">Iniciar Sesión</a>
+          </li>
+          <li class="nav-item mb-2">
+            <a href="signup" class="nav-link p-0 text-muted">Registrarse</a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+    
+    <div class="col">
+      <h5>CATEGORÍAS</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0 text-muted">Fiesta</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0 text-muted">Evento deportivo</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0 text-muted">Ocio</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0 text-muted">Desayuno, almuerzo, merienda, cena y bebida </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0 text-muted">Eventos de Cultura</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0 text-muted">Viajes en compañia</a>
+        </li>
+        <li class="nav-item mb-2">
+          <a href="#" class="nav-link p-0 text-muted">Celebración de cumpleaños</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col">
+      <h5>CONTACTOS</h5>
+      <p class="text-muted">Calle en medio, 41950<br>Castilleja de la Cuesta</p>
+      <p class="text-muted">digiPlans@gmail.com</p>
+      <p class="text-muted">+34 666 999 000</p>
+    </div>
+  </div>
+  <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+    <p class="mt-5">© 2022 Company, Inc. All rights reserved.</p>
+    <img src="../assets/img/Logo_Digiplans-removebg-preview.png" id="logoDigiPlans" alt="Logo Digiplans">
+    <div class="mt-5" style="font-size: 50px">
+      <a href="https://twitter.com/?lang=es" class="text-decoration: none; text-white"><i class="bi bi-twitter"></i></a>
+      <a href="https://www.instagram.com/" class="text-decoration: none; text-white"><i class="bi bi-instagram"></i></a>
+      <a href="https://es-es.facebook.com/" class="text-decoration: none; text-white"><i class="bi bi-facebook"></i></a>
+    </div>
+  </div>
+</footer>
