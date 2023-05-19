@@ -8,7 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent{
 
   user = {
     nombreApellidos: '',
@@ -18,19 +18,10 @@ export class SignupComponent implements OnInit {
     localidad: ''
   }
 
-  form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-  });
-
   constructor(
     private authService: AuthService,
     private router: Router
   ) {
-
-  }
-
-  ngOnInit(): void {
 
   }
 
@@ -39,7 +30,7 @@ export class SignupComponent implements OnInit {
       (res) => {
         console.log(res);
         localStorage.setItem('token', res.token);
-        this.router.navigate(['/tasks']);
+        this.router.navigate(['/home']);
       },
       err=> {
         console.log(err);

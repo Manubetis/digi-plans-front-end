@@ -6,3 +6,9 @@
 #ImagenRegistro{
     height: 840px;
 }
+
+@media (max-width: 767px) {
+    img {
+      display: none;
+    }
+  }

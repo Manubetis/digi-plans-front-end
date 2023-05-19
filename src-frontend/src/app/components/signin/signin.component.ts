@@ -11,8 +11,6 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 export class SigninComponent {
 
-  formParent: FormGroup;
-
   user = {
     email: '',
     password: ''
@@ -20,17 +18,8 @@ export class SigninComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private formBuilder: FormBuilder
+    private router: Router
   ) {
-    this.formParent = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    });
-  }
-
-  ngOnInit(): void {
-
   }
 
   signIn() {
@@ -38,7 +27,7 @@ export class SigninComponent {
       (res) => {
         console.log(res);
         localStorage.setItem('token', res.token);
-        this.router.navigate(['/tasks']);
+        this.router.navigate(['/home']);
       },
       (err) =>{
         console.log(err);
