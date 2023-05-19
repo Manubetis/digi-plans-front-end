@@ -59,18 +59,8 @@ router.post('/signup' ,async (req, res) => {
         return res.status(200).json({ token });
     })
 
-router.get('/task', verifyToken, (req, res) => {
-    res.json([{
-        name: 1,
-        description: "hola desde 1"
-    }, {
-        name: 2,
-        description: "hola desde 2"
-    },
-    {
-        name: 3,
-        description: "hola desde 3"
-    }
+router.get('/home', verifyToken, (req, res) => {
+    res.json([
     ])
 })
 

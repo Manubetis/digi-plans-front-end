@@ -34,7 +34,6 @@ const AdminBroOptions = {
 
 const adminBro = new AdminBro(AdminBroOptions)
 
-// Build and use a router which will handle all AdminBro routes
 const router = expressAdminbro.buildAuthenticatedRouter(adminBro, {
     authenticate: async (email, password) => {
         const user = await User.findOne({
