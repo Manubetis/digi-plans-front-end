@@ -16,6 +16,10 @@
     color: black;
 }
 
+.backgroundGris{
+    background-color: #363636;
+}
+
 h1{
     font-weight: bolder;
 }
@@ -33,11 +37,24 @@ hr{
     font-weight: bolder;
 }
 
+span{
+    color: red;
+}
+
+.modal-body{
+    margin: 4%;
+    color: #363636;
+}
+
 .card-header{
     background-color: #B73232;
 }
 
-#botonNaranja{
+.detalles:hover{
+    cursor: pointer;
+}
+
+#botonBlanco{
     border: 3px solid black;
     border-radius: 5px;
     background-color: white ;
@@ -47,7 +64,16 @@ hr{
     margin-right: 2%;
     margin-left: 2%;
 }
-#botonNaranja:hover{
+
+#aplicarAnimacion{
+    font-weight: bolder;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 5px;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+#botonBlanco:hover, #aplicarAnimacion:hover{
       transform: scale(1.3);
 }
 #margenTop{
@@ -59,25 +85,25 @@ hr{
 }
 
 #imagenCine{
-    background-image: url('C:\Users\a900992\Documents\proyecto-digi-plans-s\src-frontend\src\assets\img\man-g7ab3ac403_1280.jpg');
+    background-image: url('../../../assets/img/man-g7ab3ac403_1280.jpg');
     background-size: cover;
     background-position: center;
 }
 
 #imagenOcio{
-    background-image: url('C:\Users\a900992\Documents\proyecto-digi-plans-s\src-frontend\src\assets\img\man-gb68512a41_1280.jpg');
+    background-image: url('../../../assets/img/man-gb68512a41_1280.jpg');
     background-size: cover;
     background-position: center;
 }
 
 #imagenFiesta{
-    background-image: url('C:\Users\a900992\Documents\proyecto-digi-plans-s\src-frontend\src\assets\img\donations-keeps-me-going-g8237e311e_1280.jpg');
+    background-image: url('../../../assets/img/donations-keeps-me-going-g8237e311e_1280.jpg');
     background-size: cover;
     background-position: center;
 }
 
 #imagenCelebracion{
-    background-image: url('C:\Users\a900992\Documents\proyecto-digi-plans-s\src-frontend\src\assets\img\happy-birthday-g7d78466e6_1280.jpg');
+    background-image: url('../../../assets/img/happy-birthday-g7d78466e6_1280.jpg');
     background-size: cover;
     background-position: center;
 }

@@ -58,39 +58,64 @@
                 <div class="col-12">
                     <div class="row d-flex justify-content-center">
                         <div class="col-10">
-                            <div class="row" >
-                                <div class="col-12 col-md-6 col-lg-4"  id="eventoCard">
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4" id="eventoCard">
                                     <div class="card text-center" id="imagenCine">
                                         <div class="card-header">
                                             <h3>CINE</h3>
                                         </div>
                                         <div class="card-body">
                                             <h4 class="card-title text-start">VER PELICULAS</h4>
-                                            <button class="btn btn-primary d-flex justify-content-start" id="botonNaranja">Inscribirse</button>
-                                            <p class="text-start m-2">Ver detalles</p>
+                                            <!-- Modal para mandarte a Iniciar Sesión -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header backgroundGris">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">No puedes acceder</h1>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-align-start">
+                                                            <p>Para poder acceder a esta acción primero <span>debes iniciar sesión</span> en nuestra página.</p>
+                                                        </div>
+                                                        <div class="modal-footer backgroundGris">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal" id="aplicarAnimacion">Close</button>
+                                                            <button type="button" class="btn btn-primary" id="aplicarAnimacion" data-bs-dismiss="modal" routerLink="/signin">Ir</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary d-flex justify-content-start"
+                                                id="botonBlanco" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">Inscribirse</button>
+                                            <p class="text-start m-2 detalles" (click)="mostrarModal()">Ver detalles</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-lg-4"  id="eventoCard">
+                                <div class="col-12 col-md-6 col-lg-4" id="eventoCard">
                                     <div class="card text-center" id="imagenOcio">
                                         <div class="card-header">
                                             <h3>OCIO</h3>
                                         </div>
                                         <div class="card-body">
                                             <h4 class="card-title text-start">HORAS DE ESTUDIO</h4>
-                                            <button class="btn btn-primary d-flex justify-content-start" id="botonNaranja">Inscribirse</button>
+                                            <button class="btn btn-primary d-flex justify-content-start"
+                                                id="botonBlanco">Inscribirse</button>
                                             <p class="text-start m-2">Ver detalles</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-lg-4"  id="eventoCard">
+                                <div class="col-12 col-md-6 col-lg-4" id="eventoCard">
                                     <div class="card text-center" id="imagenFiesta">
                                         <div class="card-header">
                                             <h3>FIESTA</h3>
                                         </div>
                                         <div class="card-body">
                                             <h4 class="card-title text-start">DISCOTECA RIXER</h4>
-                                            <button class="btn btn-primary d-flex justify-content-start" id="botonNaranja">Inscribirse</button>
+                                            <button class="btn btn-primary d-flex justify-content-start"
+                                                id="botonBlanco">Inscribirse</button>
                                             <p class="text-start m-2">Ver detalles</p>
                                         </div>
                                     </div>
@@ -102,7 +127,8 @@
                                         </div>
                                         <div class="card-body">
                                             <h4 class="card-title text-start">CUMPLEAÑOS</h4>
-                                            <button class="btn btn-primary d-flex justify-content-start" id="botonNaranja">Inscribirse</button>
+                                            <button class="btn btn-primary d-flex justify-content-start"
+                                                id="botonBlanco">Inscribirse</button>
                                             <p class="text-start m-2">Ver detalles</p>
                                         </div>
                                     </div>
@@ -111,6 +137,6 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
-</div>
