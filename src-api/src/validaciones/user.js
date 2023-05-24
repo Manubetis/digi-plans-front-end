@@ -1,5 +1,5 @@
-const {check} = require('express-validator')
-const {validateResult} = require('../helpers/validateHelper')
+const { check } = require('express-validator')
+const { validateResult } = require('../helpers/validateHelper')
 const User = require('../models/User')
 
 const validateCreate = [
@@ -15,11 +15,17 @@ const validateCreate = [
         return true;
     }),
     check('password', 'Introduce una contraseña').exists(),
-    check('fechaNacimiento', 'Introduce una fecha de nacimiento').exists(),
+    check('fechaNacimiento', 'Introduce una fecha de nacimiento').exists().custom(
+        (valor, { req }) => {
+            if (valor < 18) {
+                throw new Error('Necesitas ser mayor de edad para registrarte');
+            }
+        }
+    ),
     check('localidad', 'Introduce tu localidad').exists(),
-    (req, res, next) =>{
+    (req, res, next) => {
         validateResult(req, res, next);
     }
 ]
 
-module.exports = {validateCreate}
+module.exports = { validateCreate }

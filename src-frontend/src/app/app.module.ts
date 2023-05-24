@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from '../app/guards/auth.guard';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { HomeUsuarioNoRegistradoComponent } from './components/home-usuario-no-registrado/home-usuario-no-registrado.component';
+import { DetallesEventosComponent } from './components/detalles-eventos/detalles-eventos.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeUsuarioNoRegistradoComponent } from './components/home-usuario-no-r
     SignupComponent,
     SigninComponent,
     HomeComponent,
-    HomeUsuarioNoRegistradoComponent
+    HomeUsuarioNoRegistradoComponent,
+    DetallesEventosComponent
   ],
   imports: [
     BrowserModule,
