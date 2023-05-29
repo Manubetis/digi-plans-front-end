@@ -1,29 +1,37 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 var bcrypt = require('bcryptjs');
 var SALT_WORK_FACTOR = 10;
 
-const userSchema =  new Schema({
+const Evento = require('./Evento')
+
+const userSchema = new Schema({
     nombreApellidos: {
         type: String,
         required: true
     },
     email: {
         type: String,
-        required:true,
-        unique:true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
         required: true
     },
     fechaNacimiento: {
-        type: String,
-        required:true
+        type: Date,
+        required: true
     },
     localidad: {
         type: String,
-        required:true
+        required: true
     },
+    eventosInscritos: [{
+        evento: {
+            type: Schema.ObjectId,
+            ref: 'Evento'
+        }
+    }],
     role: {
         type: String,
         enum: ['admin', 'restricted'],
@@ -46,4 +54,4 @@ userSchema.pre('save', function (next) {
     });
 });
 
-module.exports = model ('User', userSchema)
+module.exports = model('User', userSchema)

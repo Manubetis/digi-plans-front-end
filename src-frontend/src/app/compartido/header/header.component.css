@@ -1,0 +1,15 @@
+#logoTexto{
+    height: 80px;
+}
+
+#navBar{
+    background-color: #FF4A4A;
+}
+
+#apartadosNav{
+    font-size: 1rem;
+}
+
+a:hover{
+    cursor: pointer;
+}

@@ -2,8 +2,8 @@ const { check } = require('express-validator')
 const { validateResult } = require('../helpers/validateHelper')
 const User = require('../models/User')
 
-const validateCreate = [
-    check('nombreApellidos').exists().isLength({ min: 5 }),
+const validateCreateUser = [
+    check('nombreApellidos', 'Introduce tu nombre y apellidos').exists().isLength({ min: 5 }),
     check('email', 'Introduce un E-mail válido').exists().isEmail().withMessage('El email debe ser un email con formato correcto').custom(async (value) => {
         const user = await User.findOne({
             email: value
@@ -17,9 +17,12 @@ const validateCreate = [
     check('password', 'Introduce una contraseña').exists(),
     check('fechaNacimiento', 'Introduce una fecha de nacimiento').exists().custom(
         (valor, { req }) => {
-            if (valor < 18) {
-                throw new Error('Necesitas ser mayor de edad para registrarte');
+            const fechaNacimiento = new Date(valor);
+            const edad = calcularEdad(fechaNacimiento);
+            if (edad < 18) {
+                throw new Error('Debes ser mayor de edad para registrarte.');
             }
+            return true;
         }
     ),
     check('localidad', 'Introduce tu localidad').exists(),
@@ -28,4 +31,14 @@ const validateCreate = [
     }
 ]
 
-module.exports = { validateCreate }
+function calcularEdad(fechaNacimiento) {
+    const hoy = new Date();
+    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+    const mes = hoy.getMonth() - fechaNacimiento.getMonth();
+    if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
+        edad--;
+    }
+    return edad;
+}
+
+module.exports = { validateCreateUser }

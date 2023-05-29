@@ -13,6 +13,8 @@ import { AuthGuard } from '../app/guards/auth.guard';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { HomeUsuarioNoRegistradoComponent } from './components/home-usuario-no-registrado/home-usuario-no-registrado.component';
 import { DetallesEventosComponent } from './components/detalles-eventos/detalles-eventos.component';
+import { FooterComponent } from './compartido/footer/footer.component';
+import { HeaderComponent } from './compartido/header/header.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { DetallesEventosComponent } from './components/detalles-eventos/detalles
     SigninComponent,
     HomeComponent,
     HomeUsuarioNoRegistradoComponent,
-    DetallesEventosComponent
+    DetallesEventosComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

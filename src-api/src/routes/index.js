@@ -8,7 +8,8 @@ const jwt = require('jsonwebtoken');
 
 var bcrypt = require('bcryptjs');
 
-const { validateCreate } = require('../validaciones/user');
+const { validateCreateUser } = require('../validaciones/user');
+const { validateCreateEvent } = require('../validaciones/evento')
 
 router.post('/signin', async (req, res) => {
     const { email, password } = req.body;
@@ -25,7 +26,7 @@ router.post('/signin', async (req, res) => {
 
 });
 
-router.post('/signup', validateCreate, async (req, res) => {
+router.post('/signup', validateCreateUser, async (req, res) => {
 
     const {
         nombreApellidos,
@@ -61,7 +62,7 @@ router.post('/signup', validateCreate, async (req, res) => {
     return res.status(200).json({ token });
 })
 
-router.post('/crear-evento', async (req, res) => {
+router.post('/crear-evento', validateCreateEvent, async (req, res) => {
     const {
         titulo,
         categoria,
@@ -88,6 +89,7 @@ router.post('/crear-evento', async (req, res) => {
     res.status(200).json({ message: 'Evento creado exitosamente' });
 })
 
+// Endpoint para obtener todos los eventos
 router.get('/obtener-eventos', async (req, res) => {
     try {
         const eventos = await Evento.db.collection('eventos').find().toArray();
@@ -97,8 +99,8 @@ router.get('/obtener-eventos', async (req, res) => {
     }
 })
 
-
-router.get('/obtener-eventos/', async (req, res) => {
+// Endpoint para obtener un evento por el id que se le pase por parámetro
+router.get('/obtener-eventos/:id', async (req, res) => {
     try {
         const eventos = await Evento.findById(req.params.id);
         res.json(eventos);
@@ -107,6 +109,7 @@ router.get('/obtener-eventos/', async (req, res) => {
     }
 })
 
+// Metodo
 function verifyToken(req, res, next) {
     if (!req.headers.authorization) {
         return res.status(401).send('Unauthorized request');
