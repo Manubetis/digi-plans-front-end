@@ -89,6 +89,21 @@ router.post('/crear-evento', validateCreateEvent, async (req, res) => {
     res.status(200).json({ message: 'Evento creado exitosamente' });
 })
 
+router.get('/api/users/check-email', (req, res) => {
+    const email = req.query.email;
+  
+    // Buscar el correo electrónico en la base de datos
+    User.findOne({ email }, (err, user) => {
+      if (err) {
+        console.error('Error al buscar el correo electrónico', err);
+        res.status(500).json({ error: 'Error al buscar el correo electrónico' });
+      } else {
+        const emailExists = !!user;
+        res.json({ exists: emailExists });
+      }
+    });
+  });
+
 // Endpoint para obtener todos los eventos
 router.get('/obtener-eventos', async (req, res) => {
     try {

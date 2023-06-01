@@ -3,7 +3,7 @@ const { validateResult } = require('../helpers/validateHelper')
 const User = require('../models/User')
 
 const validateCreateUser = [
-    check('nombreApellidos', 'Introduce tu nombre y apellidos').exists().isLength({ min: 5 }),
+    check('nombreApellidos', 'Debes introducir un nombre y apellidos').exists().isLength({ min: 5 }).isString(),
     check('email', 'Introduce un E-mail válido').exists().isEmail().withMessage('El email debe ser un email con formato correcto').custom(async (value) => {
         const user = await User.findOne({
             email: value
