@@ -1,4 +1,6 @@
-const { Router } = require('express');
+const {
+    Router
+} = require('express');
 const router = Router();
 
 const User = require('../models/User');
@@ -8,12 +10,24 @@ const jwt = require('jsonwebtoken');
 
 var bcrypt = require('bcryptjs');
 
-const { validateCreateUser } = require('../validaciones/user');
-const { validateCreateEvent } = require('../validaciones/evento')
+const {
+    validateCreateUser
+} = require('../validaciones/user');
+const {
+    validateSignIn
+} = require('../validaciones/user')
+const {
+    validateCreateEvent
+} = require('../validaciones/evento');
 
-router.post('/signin', async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email })
+router.post('/signin', validateSignIn, async (req, res) => {
+    const {
+        email,
+        password
+    } = req.body;
+    const user = await User.findOne({
+        email
+    })
 
     if (!user) return res.status(401).send("El email no existe");
 
@@ -21,8 +35,12 @@ router.post('/signin', async (req, res) => {
 
     if (!passwordMatch) return res.status(401).send("La contraseña no es correcta")
 
-    const token = jwt.sign({ _id: user._id }, process.env.SECRETKEY);
-    return res.status(200).json({ token });
+    const token = jwt.sign({
+        _id: user._id
+    }, process.env.SECRETKEY);
+    return res.status(200).json({
+        token
+    });
 
 });
 
@@ -45,21 +63,25 @@ router.post('/signup', validateCreateUser, async (req, res) => {
     })
 
     if (await User.findOne({
-        email
-    })) {
+            email
+        })) {
         return res.status(401).send("El correo ya está en uso")
     }
 
     if (await User.findOne({
-        nombreApellidos
-    })) {
+            nombreApellidos
+        })) {
         return res.status(401).send("El nombre de usuario ya está en uso")
     }
 
     await user.save();
 
-    const token = jwt.sign({ _id: user._id }, process.env.SECRETKEY);
-    return res.status(200).json({ token });
+    const token = jwt.sign({
+        _id: user._id
+    }, process.env.SECRETKEY);
+    return res.status(200).json({
+        token
+    });
 })
 
 router.post('/crear-evento', validateCreateEvent, async (req, res) => {
@@ -82,27 +104,34 @@ router.post('/crear-evento', validateCreateEvent, async (req, res) => {
     const fechaActual = new Date();
 
     if (new Date(fecha) < fechaActual) {
-        return res.status(400).json({ error: 'La fecha debe ser posterior a la fecha actual' });
+        return res.status(400).json({
+            error: 'La fecha debe ser posterior a la fecha actual'
+        });
     }
 
     await evento.save();
-    res.status(200).json({ message: 'Evento creado exitosamente' });
+    res.status(200).json({
+        message: 'Evento creado exitosamente'
+    });
 })
 
-router.get('/api/users/check-email', (req, res) => {
-    const email = req.query.email;
-  
-    // Buscar el correo electrónico en la base de datos
-    User.findOne({ email }, (err, user) => {
-      if (err) {
-        console.error('Error al buscar el correo electrónico', err);
-        res.status(500).json({ error: 'Error al buscar el correo electrónico' });
-      } else {
-        const emailExists = !!user;
-        res.json({ exists: emailExists });
-      }
+router.get('/users/check-email', (req, res) => {
+    const email = req.params.email;
+
+    User.exists({
+        email: email
+    }, (err, result) => {
+        if (err) {
+            console.error('Error al verificar el correo electrónico', err);
+            return res.status(500).json({
+                error: 'Error al verificar el correo electrónico'
+            });
+        }
+        res.json({
+            exists: result
+        });
     });
-  });
+});
 
 // Endpoint para obtener todos los eventos
 router.get('/obtener-eventos', async (req, res) => {
@@ -110,7 +139,9 @@ router.get('/obtener-eventos', async (req, res) => {
         const eventos = await Evento.db.collection('eventos').find().toArray();
         res.json(eventos);
     } catch (error) {
-        res.status(500).json({ error: 'Error al obtener los eventos' });
+        res.status(500).json({
+            error: 'Error al obtener los eventos'
+        });
     }
 })
 
@@ -120,7 +151,9 @@ router.get('/obtener-eventos/:id', async (req, res) => {
         const eventos = await Evento.findById(req.params.id);
         res.json(eventos);
     } catch (error) {
-        res.status(500).json({ error: 'Error al obtener los eventos' });
+        res.status(500).json({
+            error: 'Error al obtener los eventos'
+        });
     }
 })
 

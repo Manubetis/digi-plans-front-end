@@ -31,6 +31,20 @@ const validateCreateUser = [
     }
 ]
 
+const validateSignIn = [
+    check('email', 'Introduce un E-mail válido').exists().isEmail().withMessage('El email debe ser un email con formato correcto').custom(async (value) => {
+        const user = await User.findOne({
+            email: value
+        });
+        if (user) {
+            throw new Error('El correo ya está en uso');
+
+        }
+        return true;
+    }),
+    check('password', 'Introduce una contraseña').exists()
+]
+
 function calcularEdad(fechaNacimiento) {
     const hoy = new Date();
     let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
@@ -41,4 +55,4 @@ function calcularEdad(fechaNacimiento) {
     return edad;
 }
 
-module.exports = { validateCreateUser }
+module.exports = { validateCreateUser, validateSignIn }
