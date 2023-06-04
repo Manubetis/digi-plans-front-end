@@ -15,7 +15,7 @@
                             placeholder="Nombre y apellidos">
 
                     </div>
-                    <div *ngIf="formulario.get('nombreApellidos')?.errors && formulario.get('nombreApellidos')?.dirty">
+                    <div *ngIf="formulario.get('nombreApellidos')?.errors">
                         <p class="errorValidacion m-3" *ngIf="formulario.get('nombreApellidos')?.hasError('required')">
                             El campo es requerido</p>
                         <p class="errorValidacion m-3" *ngIf="formulario.get('nombreApellidos')?.hasError('minlength')">
@@ -29,7 +29,7 @@
                         <input type="password" class="form-control" id="exampleFormControlInput2"
                             formControlName="password" [(ngModel)]="user.password" placeholder="Contraseña">
                     </div>
-                    <div *ngIf="formulario.get('password')?.errors && formulario.get('password')?.dirty">
+                    <div *ngIf="formulario.get('password')?.errors">
                         <p class="errorValidacion m-3" *ngIf="formulario.get('password')?.hasError('required')">El campo
                             es requerido</p>
                     </div>
@@ -42,9 +42,11 @@
                             formControlName="fechaNacimiento" [(ngModel)]="user.fechaNacimiento"
                             placeholder="Fecha de nacimiento">
                     </div>
-                    <div *ngIf="formulario.get('fechaNacimiento')?.errors && formulario.get('fechaNacimiento')?.dirty">
+                    <div *ngIf="formulario.get('fechaNacimiento')?.errors">
                         <p class="errorValidacion m-3" *ngIf="formulario.get('fechaNacimiento')?.hasError('required')">
                             El campo es requerido</p>
+                    </div>
+                    <div *ngIf="formulario.get('fechaNacimiento')?.errors && formulario.get('fechaNacimiento')?.dirty">
                         <p class="errorValidacion m-3">Debes ser mayor de edad</p>
                     </div>
                 </div>
@@ -55,7 +57,7 @@
                         <input type="text" class="form-control" id="exampleFormControlInput4"
                             formControlName="localidad" [(ngModel)]="user.localidad" placeholder="Localidad">
                     </div>
-                    <div *ngIf="formulario.get('localidad')?.errors && formulario.get('localidad')?.dirty">
+                    <div *ngIf="formulario.get('localidad')?.errors">
                         <p class="errorValidacion m-3" *ngIf="formulario.get('nombreApellidos')?.hasError('required')">
                             El campo es requerido</p>
                     </div>
@@ -67,7 +69,7 @@
                         <input type="email" class="form-control" id="exampleFormControlInput5" formControlName="email"
                             [(ngModel)]="user.email" placeholder="name@example.com">
                     </div>
-                    <div *ngIf="formulario.get('email')?.errors && formulario.get('email')?.dirty">
+                    <div *ngIf="formulario.get('email')?.errors">
                         <p class="errorValidacion m-3" *ngIf="formulario.get('email')?.hasError('required')">El campo es
                             requerido</p>
                         <p class="errorValidacion m-3" *ngIf="formulario.get('email')?.hasError('email')">El formato del

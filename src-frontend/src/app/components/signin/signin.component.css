@@ -19,3 +19,7 @@ label{
 p{
     color: #FFFFFF;
 }
+
+.errorValidacion{
+    color: #dc3545;
+  }

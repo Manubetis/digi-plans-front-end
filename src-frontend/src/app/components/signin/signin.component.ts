@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -9,17 +9,29 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./signin.component.css']
 })
 
-export class SigninComponent {
+export class SigninComponent implements OnInit{
 
   user = {
     email: '',
     password: ''
   }
 
+  formulario: FormGroup;
+
+  errorMensaje: string = '';
+
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {
+    this.formulario = this.fb.group({
+      password: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+    })
+  }
+
+  ngOnInit(): void {
   }
 
   signIn() {
@@ -31,6 +43,7 @@ export class SigninComponent {
       },
       (err) =>{
         console.log(err);
+        this.errorMensaje = 'El correo electrónico o la contraseña esta mal introducido';
       }
     );
   }
