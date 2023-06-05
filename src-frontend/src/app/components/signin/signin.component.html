@@ -35,7 +35,7 @@
                   </div>
                 <br>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="checkSesionAbierta" checked />
+                    <input class="form-check-input" type="checkbox" id="checkSesionAbierta" [checked]="mantenerSesion" (change)="mantenerSesionIniciada()" />
                     <label class="form-check-label" for="checkSesionAbierta"> Mantener sesión abierta </label>
                 </div>
                 <br>

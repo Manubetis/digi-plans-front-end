@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2'
 import { EventoService } from 'src/app/service/eventoService.service';
 import { Evento } from 'src/app/interfaces/evento';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-usuario-no-registrado',
@@ -12,6 +13,7 @@ export class HomeUsuarioNoRegistradoComponent implements OnInit{
 
   constructor(
     private eventoService: EventoService,
+    private router: Router
   ) {
 
   }
@@ -21,6 +23,9 @@ export class HomeUsuarioNoRegistradoComponent implements OnInit{
 
   ngOnInit(): void {
     this.obtenerEventos();
+    if (localStorage.getItem('token') || sessionStorage.getItem('token')) {
+      this.router.navigate(['/home']);
+    }
   }
 
   mostrarModal() {

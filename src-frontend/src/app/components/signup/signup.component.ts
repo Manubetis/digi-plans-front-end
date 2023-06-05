@@ -10,7 +10,7 @@ import { Observable, map } from 'rxjs';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
 
   user = {
     nombreApellidos: '',
@@ -22,23 +22,20 @@ export class SignupComponent implements OnInit {
 
   formulario: FormGroup;
 
+  mensajeErrorCorreo = '';
+
   constructor(
     private authService: AuthService,
-    private userService: UserService,
     private router: Router,
     public fb: FormBuilder
   ) {
     this.formulario = this.fb.group({
-      nombreApellidos: ['', [Validators.required, Validators.minLength(5)]],
+      nombreApellidos: ['', [Validators.required]],
       password: ['', [Validators.required]],
       fechaNacimiento: ['', [Validators.required, this.validarMayorEdad]],
       localidad: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email], [this.validateEmailExiste(this.userService)]],
+      email: ['', [Validators.required, Validators.email]],
     })
-  }
-
-  ngOnInit(): void {
-
   }
 
   validarMayorEdad(control: AbstractControl): ValidationErrors | null {
@@ -66,20 +63,6 @@ export class SignupComponent implements OnInit {
     return null;
   }
 
-  validateEmailExiste(userService: UserService){
-    return (control: FormControl): Observable<ValidationErrors | null> => {
-      const email = control.value;
-      return userService.revisarSiExisteEmail(email).pipe(
-        map(exists => {
-          if (exists) {
-            return { emailExists: true };
-          }
-          return null;
-        })
-      );
-    };
-  }
-
   signUp() {
     this.authService.signUp(this.user).subscribe(
       (res) => {
@@ -87,8 +70,9 @@ export class SignupComponent implements OnInit {
         localStorage.setItem('token', res.token);
         this.router.navigate(['/home']);
       },
-      err => {
+      (err) => {
         console.log(err);
+        this.mensajeErrorCorreo = 'El correo electrónico ya existe';
       }
     );
   }

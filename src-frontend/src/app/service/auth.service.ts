@@ -23,8 +23,13 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
+  loggedInSession(){
+    return !!sessionStorage.getItem('token');
+  }
+
   logOut(){
     localStorage.removeItem('token')
+    sessionStorage.removeItem('token')
     this.router.navigate(['/signin'])
   }
 
