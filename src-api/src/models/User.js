@@ -2,8 +2,6 @@ const { Schema, model } = require('mongoose');
 var bcrypt = require('bcryptjs');
 var SALT_WORK_FACTOR = 10;
 
-const Evento = require('./Evento')
-
 const userSchema = new Schema({
     nombreApellidos: {
         type: String,
@@ -26,6 +24,12 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    eventosCreados: [{
+        evento: {
+            type: Schema.ObjectId,
+            ref: 'Evento'
+        }
+    }],
     eventosInscritos: [{
         evento: {
             type: Schema.ObjectId,

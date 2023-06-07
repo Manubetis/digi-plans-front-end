@@ -68,12 +68,6 @@ router.post('/signup', validateCreateUser, async (req, res) => {
         return res.status(401).send("El correo ya está en uso")
     }
 
-    if (await User.findOne({
-            nombreApellidos
-        })) {
-        return res.status(401).send("El nombre de usuario ya está en uso")
-    }
-
     await user.save();
 
     const token = jwt.sign({
@@ -110,28 +104,12 @@ router.post('/crear-evento', validateCreateEvent, async (req, res) => {
     }
 
     await evento.save();
+
     res.status(200).json({
         message: 'Evento creado exitosamente'
     });
 })
 
-router.get('/users/check-email', (req, res) => {
-    const email = req.params.email;
-
-    User.exists({
-        email: email
-    }, (err, result) => {
-        if (err) {
-            console.error('Error al verificar el correo electrónico', err);
-            return res.status(500).json({
-                error: 'Error al verificar el correo electrónico'
-            });
-        }
-        res.json({
-            exists: result
-        });
-    });
-});
 
 // Endpoint para obtener todos los eventos
 router.get('/obtener-eventos', async (req, res) => {

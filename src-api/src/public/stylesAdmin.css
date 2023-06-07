@@ -21,7 +21,8 @@ form[class="sc-dIsAE khLjzP admin-bro_Box"]{
     color: white;
 }
 
-section[class="sc-dIsAE brtgQr admin-bro_Box"] table{
+section[class="sc-dIsAE brtgQr admin-bro_Box"] table,
+input[class="sc-irTswW fzXPdY admin-bro_Input"]{
     background-color: white;
 }
 

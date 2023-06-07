@@ -2,7 +2,7 @@ const { check } = require('express-validator')
 const { validateResult } = require('../helpers/validateHelper')
 
 const validateCreateEvent = [
-    check('titulo', 'Debe ser mayor de 4 carácteres el titulo del evento').exists().isLength({ min: 4 }),
+    check('titulo', 'Debe ser mayor de 4 carácteres el titulo del evento').exists(),
     check('categoria', 'Elige una categoria').exists().isIn(['Fiesta', 'Evento Deportivo', 'Ocio', 'Comida', 'Cultura', 'Viajes', 'Celebraciones']).withMessage('La categoria no existe'),
     check('fecha', 'Introduce una fecha para el evento').exists().custom(async (value) => {
         const fechaIntroducida = new Date(value);
