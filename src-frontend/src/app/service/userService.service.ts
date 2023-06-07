@@ -10,8 +10,4 @@ export class UserService {
 
     constructor(private http: HttpClient) {}
 
-    revisarSiExisteEmail(email: string): Observable<any> {
-      return this.http.get(`/api/check-email/${email}`);
-    }
-
 }

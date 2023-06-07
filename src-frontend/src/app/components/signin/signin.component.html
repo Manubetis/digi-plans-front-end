@@ -10,7 +10,7 @@
                         <input type="email" class="form-control" id="exampleFormControlInput4" formControlName="email"
                             [(ngModel)]="user.email" placeholder="Correo electrónico" required>
                     </div>
-                    <div *ngIf="formulario.get('email')?.errors && formulario.get('email')?.dirty">
+                    <div *ngIf="formulario.get('email')?.errors && formulario.get('email')?.touched">
                         <p class="errorValidacion m-3" *ngIf="formulario.get('email')?.hasError('required')">El campo es
                             requerido</p>
                         <p class="errorValidacion m-3" *ngIf="formulario.get('email')?.hasError('email')">El formato del
@@ -25,7 +25,7 @@
                         <input type="password" class="form-control" id="exampleFormControlInput2" formControlName="password"
                         [(ngModel)]="user.password" placeholder="Contraseña" required>
                     </div>
-                    <div *ngIf="formulario.get('password')?.errors && formulario.get('password')?.dirty">
+                    <div *ngIf="formulario.get('password')?.errors && formulario.get('password')?.touched">
                         <p class="errorValidacion m-3" *ngIf="formulario.get('password')?.hasError('required')">El campo
                             es requerido</p>
                     </div>

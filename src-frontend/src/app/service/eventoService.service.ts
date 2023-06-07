@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Evento } from '../interfaces/evento';
 
 @Injectable({
     providedIn: 'root'
@@ -16,4 +17,7 @@ export class EventoService {
         return this.http.get(this.URL + '/obtener-eventos');
     }
 
+    crearEventos(evento: Evento){
+        return this.http.post<any>(this.URL + '/crear-evento', evento);
+    }
 }

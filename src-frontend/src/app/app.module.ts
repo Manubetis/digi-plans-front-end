@@ -12,9 +12,10 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from '../app/guards/auth.guard';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { HomeUsuarioNoRegistradoComponent } from './components/home-usuario-no-registrado/home-usuario-no-registrado.component';
-import { DetallesEventosComponent } from './components/detalles-eventos/detalles-eventos.component';
+import { DetallesEventosComponent } from './components/home/detalles-eventos/detalles-eventos.component';
 import { FooterComponent } from './compartido/footer/footer.component';
 import { HeaderComponent } from './compartido/header/header.component';
+import { CrearEventosComponent } from './components/home/crear-eventos/crear-eventos.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HeaderComponent } from './compartido/header/header.component';
     HomeUsuarioNoRegistradoComponent,
     DetallesEventosComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    CrearEventosComponent
   ],
   imports: [
     BrowserModule,
