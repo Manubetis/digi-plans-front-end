@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -8,6 +8,20 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-    constructor(private http: HttpClient) {}
+  private URL = 'http://localhost:4000/api'
+
+  constructor(private http: HttpClient) { }
+
+  obtenerUsuario(id: string): Observable<any>{
+    return this.http.get(this.URL + '/obtener-usuario/' + id);
+  }
+
+  inscribirUsuario(data: Object){
+    return this.http.put(this.URL +'/inscribirUsuario', data);
+  }
+
+  desinscribirUsuario(data: Object){
+    return this.http.put(this.URL +'/desinscribirUsuario', data);
+  }
 
 }

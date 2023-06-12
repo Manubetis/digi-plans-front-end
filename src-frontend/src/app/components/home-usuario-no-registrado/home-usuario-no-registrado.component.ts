@@ -3,6 +3,8 @@ import Swal from 'sweetalert2'
 import { EventoService } from 'src/app/service/eventoService.service';
 import { Evento } from 'src/app/interfaces/evento';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/interfaces/usuario';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-home-usuario-no-registrado',

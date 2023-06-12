@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Usuario } from '../interfaces/usuario';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +33,18 @@ export class AuthService {
     localStorage.removeItem('token')
     sessionStorage.removeItem('token')
     this.router.navigate(['/signin'])
+  }
+
+  getUsuario(): any {
+      const token = this.getToken();
+  
+      if (!token) {
+        return null;
+      }
+  
+      const decodedToken: any = jwt_decode(token);
+  
+      return decodedToken || null;
   }
 
   getToken(){

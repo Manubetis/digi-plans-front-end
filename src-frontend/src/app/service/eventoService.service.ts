@@ -17,7 +17,15 @@ export class EventoService {
         return this.http.get(this.URL + '/obtener-eventos');
     }
 
-    crearEventos(evento: Evento){
+    obtenerEventosPorId(id: string){
+        return this.http.get(this.URL + '/obtener-eventos/' + id)
+    }
+
+    obtenerEventosInscritos(idEvento:string){
+        return this.http.get(this.URL+ '/eventosInscritos/' + idEvento);
+    }
+
+    crearEventos(evento: Evento) {
         return this.http.post<any>(this.URL + '/crear-evento', evento);
     }
 }
