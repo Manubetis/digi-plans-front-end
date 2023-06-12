@@ -27,12 +27,15 @@ export class HomeComponent implements OnInit {
   eventos: Evento[] = [];
   listaEventosFiltrada: Evento[] = [];
   listaEventosInscritos: Evento[] = [];
+  listaEventosInscritosFiltrada: Evento[] = [];
 
-  eventosPorPagina = 6; // Número de eventos que se mostrarán por página
-  paginaActual = 1; // Página actual que se está mostrando
+  eventosPorPagina = 6;
+  paginaActual = 1;
 
   mostrarDiv = false;
   mostrarDivInscritos = false;
+  mostrarContenido = false;
+  mostrarContenidoInscrito = false;
 
   ngOnInit(): void {
     this.obtenerEventos();
@@ -120,6 +123,7 @@ export class HomeComponent implements OnInit {
       (res: any) => {
         console.log(res);
         this.listaEventosInscritos = [];
+        this.listaEventosInscritosFiltrada = [];
 
         const eventosInscritos = res.eventosInscritos;
         const eventosValidos = eventosInscritos.filter((evento: any) => evento !== null);
@@ -150,6 +154,7 @@ export class HomeComponent implements OnInit {
         this.eventos = res;
         this.listaEventosFiltrada = res;
         this.listaEventosInscritos = [];
+        this.listaEventosInscritosFiltrada = [];
         this.mostrarDiv = true;
         this.mostrarDivInscritos = false;
       },
@@ -166,6 +171,7 @@ export class HomeComponent implements OnInit {
     this.eventoService.obtenerEventosPorId(id).subscribe({
       next: (res: any) => {
         this.listaEventosInscritos.push(res);
+        this.listaEventosInscritosFiltrada.push(res);
       },
       complete: () => {
         console.log('Obtención de eventos realizada');
@@ -177,7 +183,17 @@ export class HomeComponent implements OnInit {
   }
 
   filtrarEventoPorCategoria(categoria: string) {
+    this.listaEventosInscritos = [];
+    this.mostrarContenido = true;
+    this.mostrarContenidoInscrito = false;
     this.listaEventosFiltrada = this.eventos.filter(evento => evento.categoria === categoria);
+  }
+
+  filtrarEventoInscritoPorCategoria(categoria: string) {
+    this.listaEventosFiltrada = [];
+    this.mostrarContenido = false;
+    this.mostrarContenidoInscrito = true;
+    this.listaEventosInscritosFiltrada = this.listaEventosInscritos.filter(evento => evento.categoria === categoria);
   }
 
   get totalPaginas(): number {
@@ -185,13 +201,13 @@ export class HomeComponent implements OnInit {
   }
 
   get totalPaginasInscritos(): number {
-    return Math.ceil(this.listaEventosInscritos.length / this.eventosPorPagina);
+    return Math.ceil(this.listaEventosInscritosFiltrada.length / this.eventosPorPagina);
   }
 
   get eventosPaginaActualInscritos(): any[] {
     const indiceInicial = (this.paginaActual - 1) * this.eventosPorPagina;
     const indiceFinal = indiceInicial + this.eventosPorPagina;
-    return this.listaEventosInscritos.slice(indiceInicial, indiceFinal);
+    return this.listaEventosInscritosFiltrada.slice(indiceInicial, indiceFinal);
   }
 
   get eventosPaginaActual(): any[] {
