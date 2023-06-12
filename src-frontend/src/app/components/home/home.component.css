@@ -113,6 +113,11 @@ span{
     background-position: center;
 }
 
+#contenidoModal{
+    text-decoration: underline;
+    color: #B73232;
+}
+
 h4{
     margin-bottom: 20%;
 }
@@ -124,4 +129,8 @@ h6{
 
 a:hover{
     cursor: pointer;
+}
+
+.modal-header{
+    background-color: #B73232;
 }

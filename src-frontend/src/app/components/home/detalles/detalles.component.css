@@ -1,0 +1,20 @@
+#detallesTitulo{
+    background-color: #333333;
+    color: white;
+    text-align: center;
+    padding: 2%;
+}
+
+#ImagenDetalles{
+    height: 960px;
+}
+
+@media (max-width: 767px) {
+    img {
+      display: none;
+    }
+  }
+
+.errorValidacion{
+  color: #dc3545;
+}

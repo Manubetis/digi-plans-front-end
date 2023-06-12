@@ -9,12 +9,18 @@
                 <ul class="list-unstyled ps-0">
                   <li class="mb-1">
                     <div id="eventos">
-                      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 p-3" id="misEventosEeventos"
-                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">Eventos</button>
+                      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 p-3"
+                        id="misEventosEeventos" data-bs-toggle="collapse" data-bs-target="#home-collapse"
+                        aria-expanded="true">Eventos</button>
                     </div>
                     <div class="collapse show" id="home-collapse">
                       <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small m-3">
                         <li class="mb-1">
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
+                            (click)="obtenerEventos()">
+                            Todos los eventos existentes
+                          </button>
+                          <br>
                           <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
                             data-bs-toggle="collapse" data-bs-target="#categoria-collapse" aria-expanded="true">
                             Categorías
@@ -55,17 +61,23 @@
                 <ul class="list-unstyled ps-0">
                   <li class="mb-1">
                     <div id="eventos">
-                      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 p-3" id="misEventosEeventos"
-                        data-bs-toggle="collapse" data-bs-target="#homeMisEventos-collapse" aria-expanded="true">Mis Eventos</button>
+                      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 p-3"
+                        id="misEventosEeventos" data-bs-toggle="collapse" data-bs-target="#homeMisEventos-collapse"
+                        aria-expanded="true">Mis Eventos</button>
                     </div>
                     <div class="collapse show" id="homeMisEventos-collapse">
-                      
+
                       <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small m-3">
                         <li class="mb-1">
-                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0">Todos mis eventos</button>
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0">Todos mis
+                            eventos</button>
+                          <br>
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" (click)="obtenerEventosInscritos()">Eventos en
+                            los que estoy inscrito</button>
                           <br>
                           <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
-                            data-bs-toggle="collapse" data-bs-target="#categoriaMisEventos-collapse" aria-expanded="true">
+                            data-bs-toggle="collapse" data-bs-target="#categoriaMisEventos-collapse"
+                            aria-expanded="true">
                             Categorías
                           </button>
                           <div class="collapse show" id="categoriaMisEventos-collapse">
@@ -95,7 +107,8 @@
                             </ul>
                           </div>
                           <br>
-                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" routerLink="/crear-eventos">Crear Eventos</button>
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
+                            routerLink="/crear-eventos">Crear Eventos</button>
                         </li>
                       </ul>
                     </div>
@@ -114,10 +127,10 @@
             <div class="row d-flex justify-content-center">
               <div class="col-10">
                 <div class="row">
-                  <div *ngIf="listaEventosFiltrada.length === 0">
+                  <div *ngIf="listaEventosFiltrada.length === 0 && listaEventosInscritos.length === 0">
                     <h3>No hay eventos existentes aún sobre la categoría seleccionada.</h3>
                   </div>
-                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of listaEventosFiltrada" id="eventoCard">
+                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of listaEventosFiltrada" id="eventoCard">                    
                     <div class="card text-center" id="imagenCine">
                       <div class="card-header">
                         <h3>{{evento.categoria}}</h3>
@@ -125,8 +138,25 @@
                       <div class="card-body">
                         <h4 class="card-title text-start">{{evento.titulo}}</h4>
                         <button class="btn btn-primary d-flex justify-content-start" id="botonBlanco"
-                          (click)="mostrarModal()">Inscribirse</button>
-                        <p class="text-start m-2 detalles" (click)="mostrarModal()">Ver detalles</p>
+                          (click)="mostrarModalInscribirse(evento._id)">Inscribirse</button>
+                        <p class="text-start m-2 detalles" [routerLink]="['/detalles', evento._id]">Ver
+                          detalles</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of listaEventosInscritos" id="eventoCard">
+                    <div class="card text-center" id="imagenCine">
+                      <div class="card-header">
+                        <h3>{{evento.categoria}}</h3>
+                      </div>
+                      <div class="card-body">
+                        <h4 class="card-title text-start">{{evento.titulo}}</h4>
+                        <button class="btn btn-primary d-flex justify-content-start" id="botonBlanco"
+                          (click)="mostrarModalDesincribirse(evento._id)">Desinscribirse</button>
+                        <p class="text-start m-2 detalles" [routerLink]="['/detalles', evento._id]">Ver
+                          detalles</p>
                       </div>
                     </div>
                   </div>
