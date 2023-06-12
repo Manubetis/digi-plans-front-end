@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Models
 const User = require('./models/User');
+const Evento = require('./models/Evento');
 
 // AdminBro
 const AdminBro = require('admin-bro')
@@ -29,7 +30,7 @@ const AdminBroOptions = {
     assets:{
         styles:["/stylesAdmin.css"]
     },
-    resources: [User]
+    resources: [User, Evento]
 }
 
 const adminBro = new AdminBro(AdminBroOptions)

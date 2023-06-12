@@ -24,12 +24,6 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    eventosCreados: [{
-        evento: {
-            type: Schema.ObjectId,
-            ref: 'Evento'
-        }
-    }],
     eventosInscritos: [{
         evento: {
             type: Schema.ObjectId,

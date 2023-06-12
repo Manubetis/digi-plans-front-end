@@ -1,4 +1,5 @@
 const {Schema, model} = require('mongoose');
+const User = require('./User');
 
 const userSchema =  new Schema({
     titulo: {
@@ -20,6 +21,10 @@ const userSchema =  new Schema({
     },
     datos_de_interes: {
         type: String
+    },
+    creador: {
+        type: Schema.ObjectId,
+        ref: 'User'
     }
 }, {
     timestamps: true
