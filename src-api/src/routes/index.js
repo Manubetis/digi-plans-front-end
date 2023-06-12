@@ -234,6 +234,18 @@ router.get('/obtener-eventos/:id', async (req, res) => {
     }
 })
 
+// Endpoint para obtener un evento por el creador que se le pase por parámetro
+router.get('/obtener-eventos/creador/:creador', async (req, res) => {
+    try {
+        const evento = await Evento.find({ creador: req.params.creador });
+        res.json(evento);
+    } catch (error) {
+        res.status(500).json({
+            error: 'Error al obtener el evento'
+        });
+    }
+})
+
 // Endpoitn para actualizar un evento
 router.put('/actualizar-eventos/:id', async (req, res) => {
     try {
