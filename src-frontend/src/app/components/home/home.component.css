@@ -134,3 +134,13 @@ a:hover{
 .modal-header{
     background-color: #B73232;
 }
+
+.botonNext{
+    background-color: #363636;
+    color: white;
+}
+
+.botonPaginas{
+    background-color: #B73232;
+    color: white;
+}

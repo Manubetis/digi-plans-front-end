@@ -130,7 +130,7 @@
                   <div *ngIf="listaEventosFiltrada.length === 0 && listaEventosInscritos.length === 0">
                     <h3>No hay eventos existentes aún sobre la categoría seleccionada.</h3>
                   </div>
-                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of listaEventosFiltrada" id="eventoCard">                    
+                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActual" id="eventoCard">                    
                     <div class="card text-center" id="imagenCine">
                       <div class="card-header">
                         <h3>{{evento.categoria}}</h3>
@@ -146,7 +146,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of listaEventosInscritos" id="eventoCard">
+                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActualInscritos" id="eventoCard">
                     <div class="card text-center" id="imagenCine">
                       <div class="card-header">
                         <h3>{{evento.categoria}}</h3>
@@ -159,6 +159,30 @@
                           detalles</p>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="row" *ngIf="mostrarDiv !== false">
+                  <div class="col d-flex justify-content-center">
+                    <button class="btn botonNext" (click)="paginaAnterior()" [disabled]="paginaActual === 1"><span
+                        aria-hidden="true">&laquo;</span></button>
+                    <ng-container *ngFor="let pagina of paginasTotales">
+                      <button class="btn botonPaginas" (click)="irAPagina(pagina)"
+                        [disabled]="pagina === paginaActual">{{ pagina }}</button>
+                    </ng-container>
+                    <button class="btn botonNext" (click)="siguientePagina()"
+                      [disabled]="paginaActual === totalPaginas"><span aria-hidden="true">&raquo;</span></button>
+                  </div>
+                </div>
+                <div class="row" *ngIf="mostrarDivInscritos!== false">
+                  <div class="col d-flex justify-content-center">
+                    <button class="btn botonNext" (click)="paginaAnterior()" [disabled]="paginaActual === 1"><span
+                        aria-hidden="true">&laquo;</span></button>
+                    <ng-container *ngFor="let pagina of paginasTotalesInscritos">
+                      <button class="btn botonPaginas" (click)="irAPaginaInscritos(pagina)"
+                        [disabled]="pagina === paginaActual">{{ pagina }}</button>
+                    </ng-container>
+                    <button class="btn botonNext" (click)="siguientePagina()"
+                      [disabled]="paginaActual === totalPaginas"><span aria-hidden="true">&raquo;</span></button>
                   </div>
                 </div>
               </div>

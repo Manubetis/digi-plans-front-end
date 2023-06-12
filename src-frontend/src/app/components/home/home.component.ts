@@ -28,7 +28,11 @@ export class HomeComponent implements OnInit {
   listaEventosFiltrada: Evento[] = [];
   listaEventosInscritos: Evento[] = [];
 
+  eventosPorPagina = 6; // Número de eventos que se mostrarán por página
+  paginaActual = 1; // Página actual que se está mostrando
+
   mostrarDiv = false;
+  mostrarDivInscritos = false;
 
   ngOnInit(): void {
     this.obtenerEventos();
@@ -37,6 +41,8 @@ export class HomeComponent implements OnInit {
     }
 
     this.usuario = this.authService.getUsuario();
+    this.mostrarDiv = false;
+    this.mostrarDivInscritos =false;
   }
 
   mostrarModalInscribirse(eventoId: string) {
@@ -50,7 +56,7 @@ export class HomeComponent implements OnInit {
           usuarioId: this.usuario._id,
           eventoId: eventoId
         };
-  
+
         // Verificar si el usuario ya está inscrito al evento
         const yaInscrito = this.listaEventosInscritos.filter((evento: any) => evento.evento === eventoId);
         if (yaInscrito.length > 0) {
@@ -73,7 +79,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  mostrarModalDesincribirse(eventoId: string){
+  mostrarModalDesincribirse(eventoId: string) {
     Swal.fire({
       title: '¿Seguro que quieres desinscribirte?',
       showCancelButton: true,
@@ -84,7 +90,7 @@ export class HomeComponent implements OnInit {
           usuarioId: this.usuario._id,
           eventoId: eventoId
         };
-  
+
         // Verificar si el usuario ya está inscrito al evento
         const yaInscrito = this.listaEventosInscritos.filter((evento: any) => evento.evento === eventoId);
         if (yaInscrito.length > 0) {
@@ -107,26 +113,28 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  
+
 
   obtenerEventosInscritos() {
     this.eventoService.obtenerEventosInscritos(this.usuario._id).subscribe(
       (res: any) => {
         console.log(res);
         this.listaEventosInscritos = [];
-  
+
         const eventosInscritos = res.eventosInscritos;
         const eventosValidos = eventosInscritos.filter((evento: any) => evento !== null);
-  
+
         if (eventosValidos.length >= 0) {
           eventosValidos.forEach((evento: any) => {
             const eventoId = evento._id;
             this.obtenerEventoPorId(eventoId);
+            this.mostrarDiv = false
+            this.mostrarDivInscritos = true;
           });
         } else {
           console.log('No se encontraron eventos inscritos válidos.');
         }
-  
+
         this.listaEventosFiltrada = [];
       },
       (err) => {
@@ -142,6 +150,8 @@ export class HomeComponent implements OnInit {
         this.eventos = res;
         this.listaEventosFiltrada = res;
         this.listaEventosInscritos = [];
+        this.mostrarDiv = true;
+        this.mostrarDivInscritos = false;
       },
       complete: () => {
         console.log('Obtención de eventos realizada');
@@ -169,4 +179,58 @@ export class HomeComponent implements OnInit {
   filtrarEventoPorCategoria(categoria: string) {
     this.listaEventosFiltrada = this.eventos.filter(evento => evento.categoria === categoria);
   }
+
+  get totalPaginas(): number {
+    return Math.ceil(this.listaEventosFiltrada.length / this.eventosPorPagina);
+  }
+
+  get totalPaginasInscritos(): number {
+    return Math.ceil(this.listaEventosInscritos.length / this.eventosPorPagina);
+  }
+
+  get eventosPaginaActualInscritos(): any[] {
+    const indiceInicial = (this.paginaActual - 1) * this.eventosPorPagina;
+    const indiceFinal = indiceInicial + this.eventosPorPagina;
+    return this.listaEventosInscritos.slice(indiceInicial, indiceFinal);
+  }
+
+  get eventosPaginaActual(): any[] {
+    const indiceInicial = (this.paginaActual - 1) * this.eventosPorPagina;
+    const indiceFinal = indiceInicial + this.eventosPorPagina;
+    return this.listaEventosFiltrada.slice(indiceInicial, indiceFinal);
+  }
+
+  siguientePagina(): void {
+    if (this.paginaActual < this.totalPaginas) {
+      this.paginaActual++;
+    }
+  }
+
+  paginaAnterior(): void {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+    }
+  }
+
+  get paginasTotales(): number[] {
+    return Array(this.totalPaginas).fill(0).map((_, index) => index + 1);
+  }
+
+  get paginasTotalesInscritos(): number[] {
+    return Array(this.totalPaginasInscritos).fill(0).map((_, index) => index + 1);
+  }
+
+  irAPaginaInscritos(pagina: number): void {
+    if (pagina >= 1 && pagina <= this.totalPaginasInscritos) {
+      this.paginaActual = pagina;
+    }
+  }
+
+  irAPagina(pagina: number): void {
+    if (pagina >= 1 && pagina <= this.totalPaginas) {
+      this.paginaActual = pagina;
+    }
+  }
+
 }
+
