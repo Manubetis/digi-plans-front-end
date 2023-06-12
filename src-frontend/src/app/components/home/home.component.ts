@@ -26,14 +26,17 @@ export class HomeComponent implements OnInit {
 
   eventos: Evento[] = [];
   listaEventosFiltrada: Evento[] = [];
+  
   listaEventosInscritos: Evento[] = [];
-  listaEventosInscritosFiltrada: Evento[] = [];
+
+  eventosCreados: Evento[] = [];
 
   eventosPorPagina = 6;
   paginaActual = 1;
 
   mostrarDiv = false;
   mostrarDivInscritos = false;
+  mostrarDivCreados = false;
   mostrarContenido = false;
   mostrarContenidoInscrito = false;
 
@@ -44,6 +47,7 @@ export class HomeComponent implements OnInit {
     }
 
     this.usuario = this.authService.getUsuario();
+
     this.mostrarDiv = false;
     this.mostrarDivInscritos =false;
   }
@@ -123,7 +127,11 @@ export class HomeComponent implements OnInit {
       (res: any) => {
         console.log(res);
         this.listaEventosInscritos = [];
-        this.listaEventosInscritosFiltrada = [];
+        this.eventosCreados = [];
+        this.mostrarDiv = false;
+        this.mostrarDivInscritos = true;
+        this.mostrarDivCreados = false;
+        this.mostrarContenidoInscrito = true;
 
         const eventosInscritos = res.eventosInscritos;
         const eventosValidos = eventosInscritos.filter((evento: any) => evento !== null);
@@ -132,8 +140,6 @@ export class HomeComponent implements OnInit {
           eventosValidos.forEach((evento: any) => {
             const eventoId = evento._id;
             this.obtenerEventoPorId(eventoId);
-            this.mostrarDiv = false
-            this.mostrarDivInscritos = true;
           });
         } else {
           console.log('No se encontraron eventos inscritos válidos.');
@@ -150,13 +156,15 @@ export class HomeComponent implements OnInit {
   obtenerEventos() {
     this.eventoService.obtenerEventos().subscribe({
       next: (res: any) => {
-        console.log(res);
         this.eventos = res;
         this.listaEventosFiltrada = res;
+
         this.listaEventosInscritos = [];
-        this.listaEventosInscritosFiltrada = [];
+        this.eventosCreados = [];
+
         this.mostrarDiv = true;
         this.mostrarDivInscritos = false;
+        this.mostrarDivCreados = false;
       },
       complete: () => {
         console.log('Obtención de eventos realizada');
@@ -167,11 +175,39 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  mostrarEventosCreadosPorUsuario(){
+    this.listaEventosFiltrada = [];
+    this.listaEventosInscritos = [];
+    this.eventosCreados = [];
+
+    this.mostrarDiv = false;
+    this.mostrarDivInscritos = false;
+    this.mostrarContenidoInscrito = false;
+
+    this.obtenerEventoCreadoPorUsuario(this.usuario._id);
+  }
+
+  obtenerEventoCreadoPorUsuario(id_creador: string){
+    this.userService.obtenerEventoCreadoPorUsuario(id_creador).subscribe({
+      next: (res: any)=>{
+        this.eventosCreados = res;
+
+        this.mostrarDiv = false;
+        this.mostrarDivCreados = true
+      },
+      complete: ()=>{
+        console.log('Obtención de eventos creados por el usuario realizada');
+      },
+      error: (err)=>{
+        console.log('Ocurrió un error:'+err);
+      }
+    })
+  }
+
   obtenerEventoPorId(id: string) {
     this.eventoService.obtenerEventosPorId(id).subscribe({
       next: (res: any) => {
         this.listaEventosInscritos.push(res);
-        this.listaEventosInscritosFiltrada.push(res);
       },
       complete: () => {
         console.log('Obtención de eventos realizada');
@@ -184,16 +220,11 @@ export class HomeComponent implements OnInit {
 
   filtrarEventoPorCategoria(categoria: string) {
     this.listaEventosInscritos = [];
+    this.eventosCreados = [];
+    
     this.mostrarContenido = true;
     this.mostrarContenidoInscrito = false;
     this.listaEventosFiltrada = this.eventos.filter(evento => evento.categoria === categoria);
-  }
-
-  filtrarEventoInscritoPorCategoria(categoria: string) {
-    this.listaEventosFiltrada = [];
-    this.mostrarContenido = false;
-    this.mostrarContenidoInscrito = true;
-    this.listaEventosInscritosFiltrada = this.listaEventosInscritos.filter(evento => evento.categoria === categoria);
   }
 
   get totalPaginas(): number {
@@ -201,19 +232,29 @@ export class HomeComponent implements OnInit {
   }
 
   get totalPaginasInscritos(): number {
-    return Math.ceil(this.listaEventosInscritosFiltrada.length / this.eventosPorPagina);
+    return Math.ceil(this.listaEventosInscritos.length / this.eventosPorPagina);
+  }
+
+  get totalPaginasEventosCreados(): number {
+    return Math.ceil(this.eventosCreados.length / this.eventosPorPagina);
   }
 
   get eventosPaginaActualInscritos(): any[] {
     const indiceInicial = (this.paginaActual - 1) * this.eventosPorPagina;
     const indiceFinal = indiceInicial + this.eventosPorPagina;
-    return this.listaEventosInscritosFiltrada.slice(indiceInicial, indiceFinal);
+    return this.listaEventosInscritos.slice(indiceInicial, indiceFinal);
   }
 
   get eventosPaginaActual(): any[] {
     const indiceInicial = (this.paginaActual - 1) * this.eventosPorPagina;
     const indiceFinal = indiceInicial + this.eventosPorPagina;
     return this.listaEventosFiltrada.slice(indiceInicial, indiceFinal);
+  }
+
+  get eventosPaginaActualEventosCreados(): any[] {
+    const indiceInicial = (this.paginaActual - 1) * this.eventosPorPagina;
+    const indiceFinal = indiceInicial + this.eventosPorPagina;
+    return this.eventosCreados.slice(indiceInicial, indiceFinal);
   }
 
   siguientePagina(): void {
@@ -236,6 +277,10 @@ export class HomeComponent implements OnInit {
     return Array(this.totalPaginasInscritos).fill(0).map((_, index) => index + 1);
   }
 
+  get paginasTotalesEventosCreados(): number[] {
+    return Array(this.totalPaginasEventosCreados).fill(0).map((_, index) => index + 1);
+  }
+
   irAPaginaInscritos(pagina: number): void {
     if (pagina >= 1 && pagina <= this.totalPaginasInscritos) {
       this.paginaActual = pagina;
@@ -244,6 +289,12 @@ export class HomeComponent implements OnInit {
 
   irAPagina(pagina: number): void {
     if (pagina >= 1 && pagina <= this.totalPaginas) {
+      this.paginaActual = pagina;
+    }
+  }
+
+  irAPaginaEventosCreados(pagina: number): void {
+    if (pagina >= 1 && pagina <= this.totalPaginasEventosCreados) {
       this.paginaActual = pagina;
     }
   }

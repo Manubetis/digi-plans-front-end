@@ -69,43 +69,11 @@
 
                       <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small m-3">
                         <li class="mb-1">
-                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0">Todos mis
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" (click)="mostrarEventosCreadosPorUsuario()">Todos mis
                             eventos</button>
                           <br>
                           <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" (click)="obtenerEventosInscritos()">Eventos en
                             los que estoy inscrito</button>
-                          <br>
-                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
-                            data-bs-toggle="collapse" data-bs-target="#categoriaMisEventos-collapse"
-                            aria-expanded="true">
-                            Categorías
-                          </button>
-                          <div class="collapse show" id="categoriaMisEventos-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small m-3">
-                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                  id="categorias" (click)="filtrarEventoInscritoPorCategoria('Fiesta')">Fiesta</a>
-                              </li>
-                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                  id="categorias" (click)="filtrarEventoInscritoPorCategoria('Evento Deportivo')">Eventos
-                                  Deportivos</a>
-                              </li>
-                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                  id="categorias" (click)="filtrarEventoInscritoPorCategoria('Ocio')">Ocio</a>
-                              </li>
-                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                  id="categorias" (click)="filtrarEventoInscritoPorCategoria('Comida')">Comida</a>
-                              </li>
-                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                  id="categorias" (click)="filtrarEventoInscritoPorCategoria('Cultura')">Eventos de cultura</a>
-                              </li>
-                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                  id="categorias" (click)="filtrarEventoInscritoPorCategoria('Viajes')">Viajes</a>
-                              </li>
-                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                  id="categorias" (click)="filtrarEventoInscritoPorCategoria('Celebraciones')">Celebraciones</a>
-                              </li>
-                            </ul>
-                          </div>
                           <br>
                           <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
                             routerLink="/crear-eventos">Crear Eventos</button>
@@ -127,7 +95,7 @@
             <div class="row d-flex justify-content-center">
               <div class="col-10">
                 <div class="row">
-                  <div *ngIf="listaEventosFiltrada.length === 0 && mostrarContenido">
+                  <div *ngIf="listaEventosInscritos.length === 0 && eventosCreados.length === 0 && listaEventosFiltrada.length === 0 && mostrarDiv">
                     <h3>No hay eventos existentes aún sobre la categoría seleccionada.</h3>
                   </div>
                   <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActual" id="eventoCard">                    
@@ -146,7 +114,21 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div *ngIf="listaEventosInscritosFiltrada.length === 0 && mostrarContenidoInscrito">
+                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActualEventosCreados" id="eventoCard">                    
+                    <div class="card text-center" id="imagenCine">
+                      <div class="card-header">
+                        <h3>{{evento.categoria}}</h3>
+                      </div>
+                      <div class="card-body">
+                        <h4 class="card-title text-start">{{evento.titulo}}</h4>
+                        <p class="text-start m-2 detalles" [routerLink]="['/detalles', evento._id]">Ver
+                          detalles</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div *ngIf="listaEventosFiltrada.length === 0 && eventosCreados.length === 0  && listaEventosInscritos.length === 0 && mostrarContenidoInscrito">
                     <h3>No te has inscrito a ningun evento aún.</h3>
                   </div>
                   <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActualInscritos" id="eventoCard">
@@ -182,6 +164,18 @@
                         aria-hidden="true">&laquo;</span></button>
                     <ng-container *ngFor="let pagina of paginasTotalesInscritos">
                       <button class="btn botonPaginas" (click)="irAPaginaInscritos(pagina)"
+                        [disabled]="pagina === paginaActual">{{ pagina }}</button>
+                    </ng-container>
+                    <button class="btn botonNext" (click)="siguientePagina()"
+                      [disabled]="paginaActual === totalPaginas"><span aria-hidden="true">&raquo;</span></button>
+                  </div>
+                </div>
+                <div class="row" *ngIf="mostrarDivCreados!== false">
+                  <div class="col d-flex justify-content-center">
+                    <button class="btn botonNext" (click)="paginaAnterior()" [disabled]="paginaActual === 1"><span
+                        aria-hidden="true">&laquo;</span></button>
+                    <ng-container *ngFor="let pagina of paginasTotalesEventosCreados">
+                      <button class="btn botonPaginas" (click)="irAPaginaEventosCreados(pagina)"
                         [disabled]="pagina === paginaActual">{{ pagina }}</button>
                     </ng-container>
                     <button class="btn botonNext" (click)="siguientePagina()"

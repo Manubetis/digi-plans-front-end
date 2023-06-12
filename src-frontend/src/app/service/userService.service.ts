@@ -24,4 +24,8 @@ export class UserService {
     return this.http.put(this.URL +'/desinscribirUsuario', data);
   }
 
+  obtenerEventoCreadoPorUsuario(id_creador: string){
+    return this.http.get(this.URL+ '/obtener-eventos/creador/' +id_creador);
+  }
+
 }
