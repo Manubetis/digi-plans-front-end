@@ -36,7 +36,7 @@ export class HomeUsuarioNoRegistradoComponent implements OnInit{
   mostrarModal() {
     Swal.fire({
       icon: 'error',
-      title: 'Debes iniciar sesión',
+      title: 'Debes registrarte o iniciar sesión',
       showConfirmButton: false,
       timer: 1500
     })

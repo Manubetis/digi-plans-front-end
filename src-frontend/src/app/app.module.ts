@@ -16,6 +16,7 @@ import { FooterComponent } from './compartido/footer/footer.component';
 import { HeaderComponent } from './compartido/header/header.component';
 import { CrearEventosComponent } from './components/home/crear-eventos/crear-eventos.component';
 import { DetallesComponent } from './components/home/detalles/detalles.component';
+import { EditarEventosComponent } from './components/home/editar-eventos/editar-eventos/editar-eventos.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DetallesComponent } from './components/home/detalles/detalles.component
     FooterComponent,
     HeaderComponent,
     CrearEventosComponent,
-    DetallesComponent
+    DetallesComponent,
+    EditarEventosComponent
   ],
   imports: [
     BrowserModule,

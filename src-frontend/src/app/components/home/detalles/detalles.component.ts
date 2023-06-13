@@ -28,7 +28,6 @@ export class DetallesComponent implements OnInit {
   obtnerEventoPorId(id: string) {
     this.eventoService.obtenerEventosPorId(id).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.eventos = [res];
       },
       complete: () => {

@@ -1,0 +1,84 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex justify-content-center mt-4">
+          <h2 id="titulo">EDITAR EVENTO</h2>
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+        <div class="m-4 contenido">
+          <div class="row">
+            <div class="col-6">
+              <form [formGroup]="formulario" (ngSubmit)="editarEventoForm()" class="m-5" novalidate>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput2" class="form-label">Título del evento</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-eye-slash"></i></span>
+                    <input type="text" class="form-control" id="exampleFormControlInput2" formControlName="titulo"
+                      placeholder="Título del evento" [(ngModel)]="formularioEvento.titulo">
+                  </div>
+                  <div *ngIf="formulario.get('titulo')?.errors && formulario.get('titulo')?.touched">
+                    <p class="errorValidacion m-3" *ngIf="formulario.get('titulo')?.hasError('required')">
+                      El campo es requerido</p>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput6" class="form-label">Fecha del evento</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-eye-slash"></i></span>
+                    <input type="date" class="form-control" id="exampleFormControlInput6" formControlName="fecha"
+                    [(ngModel)]="formularioEvento.fecha">
+                  </div>
+                  <div class="errorValidacion m-3" *ngIf="formulario.get('fecha')?.hasError('fechaAnterior') && formulario.get('fecha')?.touched">
+                    La fecha introducida no puede ser anterior o igual a la fecha actual.
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput3" class="form-label">Categoría</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                    <select class="form-control" formControlName="categoria" [(ngModel)]="formularioEvento.categoria" id="categorias">
+                      <option value="Fiesta">Fiesta</option>
+                      <option value="Evento Deportivo">Evento Deportivo</option>
+                      <option value="Ocio">Ocio</option>
+                      <option value="Comida">Comida</option>
+                      <option value="Cultura">Cultura</option>
+                      <option value="Viajes">Viajes</option>
+                      <option value="Celebraciones">Celebraciones</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput4" class="form-label">Localidad</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                    <input type="text" class="form-control" id="exampleFormControlInput4" formControlName="localidad"
+                      placeholder="Localidad" [(ngModel)]="formularioEvento.localidad">
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput5" class="form-label">Datos de interes</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                    <textarea class="form-control" id="exampleFormControlInput5" formControlName="datos_de_interes"
+                      placeholder="..." [(ngModel)]="formularioEvento.datos_de_interes"></textarea>
+                  </div>
+                </div>
+                <br>
+                <div class="d-flex justify-content-end">
+                  <button type="submit" [disabled]="formulario.invalid" class="btn btn-primary m-2 d-flex justify-content-end" (click)="mostrarModal()">Editar</button>
+                  <button type="submit" routerLink="/home" class="btn btn-light m-2 d-flex justify-content-end">Volver</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-6">
+              <div class="d-flex justify-content-end m-5">
+                <img src="assets/img/Logo_Digiplans-removebg-preview.png" alt="Logo_Digiplans-removebg-preview">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

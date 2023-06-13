@@ -9,6 +9,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AuthGuard } from '../app/guards/auth.guard';
 import { CrearEventosComponent } from './components/home/crear-eventos/crear-eventos.component';
 import { DetallesComponent } from './components/home/detalles/detalles.component';
+import { EditarEventosComponent } from './components/home/editar-eventos/editar-eventos/editar-eventos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homeUsuarioNoRegistrado', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'homeUsuarioNoRegistrado', component: HomeUsuarioNoRegistradoComponent },
   { path: 'crear-eventos', component: CrearEventosComponent, canActivate: [AuthGuard] },
-  { path: 'detalles/:id', component: DetallesComponent, canActivate: [AuthGuard] }
+  { path: 'detalles/:id', component: DetallesComponent, canActivate: [AuthGuard] },
+  { path: 'editar-evento/:id', component: EditarEventosComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -1,0 +1,20 @@
+#titulo {
+    background-color: #333333;
+    color: white;
+    padding: 1%;
+    border-radius: 6px;
+}
+
+.contenido {
+    background-color: #FF4A4A;
+    border-radius: 6px;
+}
+
+#imagenCrearEventos {
+    height: 40%;
+    margin: 4%;
+}
+
+.errorValidacion {
+    color: white;
+}

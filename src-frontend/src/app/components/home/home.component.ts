@@ -183,6 +183,7 @@ export class HomeComponent implements OnInit {
     this.mostrarDiv = false;
     this.mostrarDivInscritos = false;
     this.mostrarContenidoInscrito = false;
+    this.mostrarDivCreados = true;
 
     this.obtenerEventoCreadoPorUsuario(this.usuario._id);
   }
@@ -191,9 +192,9 @@ export class HomeComponent implements OnInit {
     this.userService.obtenerEventoCreadoPorUsuario(id_creador).subscribe({
       next: (res: any)=>{
         this.eventosCreados = res;
-
+        
         this.mostrarDiv = false;
-        this.mostrarDivCreados = true
+        this.mostrarDivCreados = true;
       },
       complete: ()=>{
         console.log('Obtención de eventos creados por el usuario realizada');
@@ -218,12 +219,34 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  eliminarEventoPorId(id: string){
+    this.eventoService.eliminarEvento(id).subscribe({
+      complete: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Evento eliminado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+        this.obtenerEventoCreadoPorUsuario(this.usuario._id);
+        console.log('Evento eliminado correctamente');
+      },
+      error: (err) => {
+        console.log('Ocurrió un error:' + err);
+      }
+    });
+  }
+
   filtrarEventoPorCategoria(categoria: string) {
     this.listaEventosInscritos = [];
     this.eventosCreados = [];
     
     this.mostrarContenido = true;
+    this.mostrarDiv = true;
     this.mostrarContenidoInscrito = false;
+    this.mostrarDivCreados = false;
+
     this.listaEventosFiltrada = this.eventos.filter(evento => evento.categoria === categoria);
   }
 
