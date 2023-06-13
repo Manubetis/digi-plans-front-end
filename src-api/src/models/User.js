@@ -1,4 +1,7 @@
-const { Schema, model } = require('mongoose');
+const {
+    Schema,
+    model
+} = require('mongoose');
 var bcrypt = require('bcryptjs');
 var SALT_WORK_FACTOR = 10;
 
