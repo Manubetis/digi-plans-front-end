@@ -6,7 +6,7 @@
 }
 
 .contenido {
-    background-color: #FF4A4A;
+    background-color: #7ce4b0;
     border-radius: 6px;
 }
 
@@ -17,4 +17,40 @@
 
 .errorValidacion {
     color: white;
+}
+
+#botonBlanco{
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    font-weight: bolder;
+    transition: transform 0.3s ease-in-out;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+#botonVerde{
+    border: 3px solid white;
+    border-radius: 5px;
+    background-color: #046244;
+    color: white;
+    font-weight: bolder;
+    transition: transform 0.3s ease-in-out;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+#aplicarAnimacion {
+    font-weight: bolder;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 5px;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+#botonBlanco:hover,
+#botonVerde:hover,
+#aplicarAnimacion:hover {
+    transform: scale(1.3);
 }
