@@ -120,3 +120,13 @@ h6{
 a:hover{
     cursor: pointer;
 }
+
+.botonNext{
+    background-color: #363636;
+    color: white;
+}
+
+.botonPaginas{
+    background-color: #B73232;
+    color: white;
+}

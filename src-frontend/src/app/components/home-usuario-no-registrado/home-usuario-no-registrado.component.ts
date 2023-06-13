@@ -13,15 +13,18 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class HomeUsuarioNoRegistradoComponent implements OnInit{
 
+  eventos: Evento[] = [];
+  listaEventosFiltrada: Evento[] = [];
+
+  eventosPorPagina = 6;
+  paginaActual = 1;
+
   constructor(
     private eventoService: EventoService,
     private router: Router
   ) {
 
   }
-
-  eventos: Evento[] = [];
-  listaEventosFiltrada: Evento[] = [];
 
   ngOnInit(): void {
     this.obtenerEventos();
@@ -56,5 +59,37 @@ export class HomeUsuarioNoRegistradoComponent implements OnInit{
 
   filtrarEventoPorCategoria(categoria: string) {
     this.listaEventosFiltrada = this.eventos.filter(evento => evento.categoria === categoria);
+  }
+
+  get totalPaginas(): number {
+    return Math.ceil(this.listaEventosFiltrada.length / this.eventosPorPagina);
+  }
+
+  get eventosPaginaActual(): any[] {
+    const indiceInicial = (this.paginaActual - 1) * this.eventosPorPagina;
+    const indiceFinal = indiceInicial + this.eventosPorPagina;
+    return this.listaEventosFiltrada.slice(indiceInicial, indiceFinal);
+  }
+
+  siguientePagina(): void {
+    if (this.paginaActual < this.totalPaginas) {
+      this.paginaActual++;
+    }
+  }
+
+  paginaAnterior(): void {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+    }
+  }
+
+  get paginasTotales(): number[] {
+    return Array(this.totalPaginas).fill(0).map((_, index) => index + 1);
+  }
+
+  irAPagina(pagina: number): void {
+    if (pagina >= 1 && pagina <= this.totalPaginas) {
+      this.paginaActual = pagina;
+    }
   }
 }
