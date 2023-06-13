@@ -1,18 +1,18 @@
-#registro{
-    background-color: #333333;
-    color: white;
+#registro {
+  background-color: #333333;
+  color: white;
 }
 
-#ImagenRegistro{
-    height: 960px;
+#ImagenRegistro {
+  height: 960px;
 }
 
 @media (max-width: 767px) {
-    img {
-      display: none;
-    }
+  img {
+    display: none;
   }
+}
 
-.errorValidacion{
+.errorValidacion {
   color: #dc3545;
 }

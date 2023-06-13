@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   templateUrl: './crear-eventos.component.html',
   styleUrls: ['./crear-eventos.component.css']
 })
-export class CrearEventosComponent implements OnInit{
+export class CrearEventosComponent implements OnInit {
 
   formulario: FormGroup;
 
@@ -30,7 +30,7 @@ export class CrearEventosComponent implements OnInit{
       fecha: ['', [Validators.required, this.validarFecha]],
       categoria: ['', [Validators.required]],
       localidad: ['', [Validators.required]],
-      datos_de_interes:['']
+      datos_de_interes: ['']
     })
   }
 
@@ -44,7 +44,7 @@ export class CrearEventosComponent implements OnInit{
 
     if (fechaIntroducida < fechaActual) {
       return { 'fechaAnterior': true };
-    }else{
+    } else {
       return null
     }
   }

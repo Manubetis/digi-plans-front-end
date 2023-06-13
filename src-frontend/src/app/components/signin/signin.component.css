@@ -1,25 +1,25 @@
-#noMiembro{
+#noMiembro {
     color: blue;
 }
 
-#logearse{
+#logearse {
     background-color: #333333;
     color: white;
 }
 
-#formulario{
+#formulario {
     margin: 4%;
     width: 60%;
 }
 
-label{
+label {
     color: #FFFFFF;
 }
 
-p{
+p {
     color: #FFFFFF;
 }
 
-.errorValidacion{
+.errorValidacion {
     color: #dc3545;
-  }
+}

@@ -41,25 +41,25 @@ export class SignupComponent {
   validarMayorEdad(control: AbstractControl): ValidationErrors | null {
     const fechaActual = new Date();
     const fechaNacimiento = new Date(control.value);
-  
+
     const anioActual = fechaActual.getFullYear();
     const mesActual = fechaActual.getMonth();
     const diaActual = fechaActual.getDate();
-  
+
     const anioNacimiento = fechaNacimiento.getFullYear();
     const mesNacimiento = fechaNacimiento.getMonth();
     const diaNacimiento = fechaNacimiento.getDate();
-  
+
     let edad = anioActual - anioNacimiento;
-  
+
     if (mesActual < mesNacimiento || (mesActual === mesNacimiento && diaActual < diaNacimiento)) {
       edad--;
     }
-  
+
     if (edad <= 18) {
       return { invalid: true };
     }
-  
+
     return null;
   }
 

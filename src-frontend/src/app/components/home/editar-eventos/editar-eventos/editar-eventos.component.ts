@@ -25,7 +25,7 @@ export class EditarEventosComponent implements OnInit {
     creador: ''
   };
 
-  evento!:any;
+  evento!: any;
 
   usuario!: any;
 

@@ -1,27 +1,27 @@
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-7 mt-4 mb-4 p-4">
-        <h3 class="border-bottom pb-4 mb-3" id="detallesTitulo">Detalles del evento</h3>
-        <div class="p-5" *ngFor="let evento of eventos">
-          <p></p>
-          <br>
-          <p><strong>Titulo del evento:</strong> {{evento.titulo}}</p>
-          <br>
-          <p><strong>Categoría:</strong> {{evento.categoria}}</p>
-          <br>
-          <p><strong>Localidad:</strong> {{evento.localidad}}</p>
-          <br>
-          <p><strong>Fecha del evento:</strong> {{evento.fecha}}</p>
-          <br>
-          <p><strong>Datos de interes:</strong> {{evento.datos_de_interes}}</p>
-        </div>
-        <div class="p-2">
-            <button type="submit" class="btn btn-primary d-flex justify-content-start" id="botonBlanco" routerLink="/home">Volver</button>
-        </div>
+  <div class="row">
+    <div class="col-md-7 mt-4 mb-4 p-4">
+      <h3 class="border-bottom pb-4 mb-3" id="detallesTitulo">Detalles del evento</h3>
+      <div class="p-5" *ngFor="let evento of eventos">
+        <p></p>
+        <br>
+        <p><strong>Titulo del evento:</strong> {{evento.titulo}}</p>
+        <br>
+        <p><strong>Categoría:</strong> {{evento.categoria}}</p>
+        <br>
+        <p><strong>Localidad:</strong> {{evento.localidad}}</p>
+        <br>
+        <p><strong>Fecha del evento:</strong> {{evento.fecha}}</p>
+        <br>
+        <p><strong>Datos de interes:</strong> {{evento.datos_de_interes}}</p>
       </div>
-      <div class="col-md-4">
-        <img src="assets/img/paragliding-445268_1280.jpg" id="ImagenDetalles" alt="Imagen fondo registro">
+      <div class="p-2">
+        <button type="submit" class="btn btn-primary d-flex justify-content-start" id="botonBlanco"
+          routerLink="/home">Volver</button>
       </div>
     </div>
+    <div class="col-md-4">
+      <img src="assets/img/paragliding-445268_1280.jpg" id="ImagenDetalles" alt="Imagen fondo registro">
+    </div>
   </div>
-  
+</div>

@@ -29,8 +29,8 @@ export class EventoService {
         return this.http.post<any>(this.URL + '/crear-evento', evento);
     }
 
-    actualizarEvento(id:string, data: Object) {
-        return this.http.put(this.URL + '/actualizar-eventos/' +id, data)
+    actualizarEvento(id: string, data: Object) {
+        return this.http.put(this.URL + '/actualizar-eventos/' + id, data)
     }
 
     eliminarEvento(id: string) {

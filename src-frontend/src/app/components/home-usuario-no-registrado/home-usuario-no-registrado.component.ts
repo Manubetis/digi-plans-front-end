@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/service/auth.service';
   templateUrl: './home-usuario-no-registrado.component.html',
   styleUrls: ['./home-usuario-no-registrado.component.css']
 })
-export class HomeUsuarioNoRegistradoComponent implements OnInit{
+export class HomeUsuarioNoRegistradoComponent implements OnInit {
 
   eventos: Evento[] = [];
   listaEventosFiltrada: Evento[] = [];
@@ -54,7 +54,8 @@ export class HomeUsuarioNoRegistradoComponent implements OnInit{
       },
       error: (err) => {
         console.log('Ocurrió un error:' + err);
-      }});
+      }
+    });
   }
 
   filtrarEventoPorCategoria(categoria: string) {

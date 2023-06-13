@@ -12,20 +12,20 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerUsuario(id: string): Observable<any>{
+  obtenerUsuario(id: string): Observable<any> {
     return this.http.get(this.URL + '/obtener-usuario/' + id);
   }
 
-  inscribirUsuario(data: Object){
-    return this.http.put(this.URL +'/inscribirUsuario', data);
+  inscribirUsuario(data: Object) {
+    return this.http.put(this.URL + '/inscribirUsuario', data);
   }
 
-  desinscribirUsuario(data: Object){
-    return this.http.put(this.URL +'/desinscribirUsuario', data);
+  desinscribirUsuario(data: Object) {
+    return this.http.put(this.URL + '/desinscribirUsuario', data);
   }
 
-  obtenerEventoCreadoPorUsuario(id_creador: string){
-    return this.http.get(this.URL+ '/obtener-eventos/creador/' +id_creador);
+  obtenerEventoCreadoPorUsuario(id_creador: string) {
+    return this.http.get(this.URL + '/obtener-eventos/creador/' + id_creador);
   }
 
 }

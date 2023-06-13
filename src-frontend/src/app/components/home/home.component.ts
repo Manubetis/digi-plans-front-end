@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   eventos: Evento[] = [];
   listaEventosFiltrada: Evento[] = [];
-  
+
   listaEventosInscritos: Evento[] = [];
 
   eventosCreados: Evento[] = [];
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     this.usuario = this.authService.getUsuario();
 
     this.mostrarDiv = false;
-    this.mostrarDivInscritos =false;
+    this.mostrarDivInscritos = false;
   }
 
   mostrarModalInscribirse(eventoId: string) {
@@ -175,7 +175,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  mostrarEventosCreadosPorUsuario(){
+  mostrarEventosCreadosPorUsuario() {
     this.listaEventosFiltrada = [];
     this.listaEventosInscritos = [];
     this.eventosCreados = [];
@@ -188,19 +188,19 @@ export class HomeComponent implements OnInit {
     this.obtenerEventoCreadoPorUsuario(this.usuario._id);
   }
 
-  obtenerEventoCreadoPorUsuario(id_creador: string){
+  obtenerEventoCreadoPorUsuario(id_creador: string) {
     this.userService.obtenerEventoCreadoPorUsuario(id_creador).subscribe({
-      next: (res: any)=>{
+      next: (res: any) => {
         this.eventosCreados = res;
-        
+
         this.mostrarDiv = false;
         this.mostrarDivCreados = true;
       },
-      complete: ()=>{
+      complete: () => {
         console.log('Obtención de eventos creados por el usuario realizada');
       },
-      error: (err)=>{
-        console.log('Ocurrió un error:'+err);
+      error: (err) => {
+        console.log('Ocurrió un error:' + err);
       }
     })
   }
@@ -219,7 +219,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  eliminarEventoPorId(id: string){
+  eliminarEventoPorId(id: string) {
     this.eventoService.eliminarEvento(id).subscribe({
       complete: () => {
         Swal.fire({
@@ -241,7 +241,7 @@ export class HomeComponent implements OnInit {
   filtrarEventoPorCategoria(categoria: string) {
     this.listaEventosInscritos = [];
     this.eventosCreados = [];
-    
+
     this.mostrarContenido = true;
     this.mostrarDiv = true;
     this.mostrarContenidoInscrito = false;

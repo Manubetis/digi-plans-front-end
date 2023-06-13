@@ -1,68 +1,69 @@
-#estiloSideBar{
+#estiloSideBar {
     width: 100%;
     margin: 2%;
     background-color: #FF4A4A;
 }
 
-#eventos{
+#eventos {
     background-color: #B73232;
 }
 
-#misEventosEeventos{
+#misEventosEeventos {
     color: white;
     font-size: 120%;
 }
 
-#categorias{
+#categorias {
     color: white;
 }
 
-#categorias:hover{
+#categorias:hover {
     color: black;
 }
 
-.backgroundGris{
+.backgroundGris {
     background-color: #363636;
 }
 
-h1{
+h1 {
     font-weight: bolder;
 }
-hr{
+
+hr {
     margin: auto;
     width: 50%;
     border: 3px solid black;
     color: black;
 }
 
-.card{
+.card {
     border: 5px solid black;
     margin-bottom: 20px;
     color: white;
     font-weight: bolder;
 }
 
-span{
+span {
     color: red;
 }
 
-.modal-body{
+.modal-body {
     margin: 4%;
     color: #363636;
 }
 
-.card-header{
+.card-header {
     background-color: #B73232;
 }
 
-.detalles:hover{
+.detalles:hover {
     cursor: pointer;
 }
 
-#botonBlanco{
+#botonBlanco {
     border: 3px solid black;
     border-radius: 5px;
-    background-color: white ;
+    background-color: white;
     color: black;
     font-weight: bolder;
     transition: transform 0.3s ease-in-out;
@@ -70,10 +71,10 @@ span{
     margin-left: 2%;
 }
 
-#botonRojo{
+#botonRojo {
     border: 3px solid black;
     border-radius: 5px;
-    background-color: #B73232 ;
+    background-color: #B73232;
     color: white;
     font-weight: bolder;
     transition: transform 0.3s ease-in-out;
@@ -81,7 +82,7 @@ span{
     margin-left: 2%;
 }
 
-#aplicarAnimacion{
+#aplicarAnimacion {
     font-weight: bolder;
     transition: transform 0.3s ease-in-out;
     border-radius: 5px;
@@ -89,69 +90,71 @@ span{
     margin-left: 2%;
 }
 
-#botonBlanco:hover, #aplicarAnimacion:hover{
-      transform: scale(1.3);
+#botonBlanco:hover,
+#aplicarAnimacion:hover {
+    transform: scale(1.3);
 }
-#margenTop{
+
+#margenTop {
     margin-top: 30px;
 }
 
-#eventoCard{
+#eventoCard {
     width: 50%;
 }
 
-#imagenCine{
+#imagenCine {
     background-image: url('../../../assets/img/man-g7ab3ac403_1280.jpg');
     background-size: cover;
     background-position: center;
 }
 
-#imagenOcio{
+#imagenOcio {
     background-image: url('../../../assets/img/man-gb68512a41_1280.jpg');
     background-size: cover;
     background-position: center;
 }
 
-#imagenFiesta{
+#imagenFiesta {
     background-image: url('../../../assets/img/donations-keeps-me-going-g8237e311e_1280.jpg');
     background-size: cover;
     background-position: center;
 }
 
-#imagenCelebracion{
+#imagenCelebracion {
     background-image: url('../../../assets/img/happy-birthday-g7d78466e6_1280.jpg');
     background-size: cover;
     background-position: center;
 }
 
-#contenidoModal{
+#contenidoModal {
     text-decoration: underline;
     color: #B73232;
 }
 
-h4{
+h4 {
     margin-bottom: 20%;
 }
 
-h6{
-    color: white; 
+h6 {
+    color: white;
     font-weight: bolder;
 }
 
-a:hover{
+a:hover {
     cursor: pointer;
 }
 
-.modal-header{
+.modal-header {
     background-color: #B73232;
 }
 
-.botonNext{
+.botonNext {
     background-color: #363636;
     color: white;
 }
 
-.botonPaginas{
+.botonPaginas {
     background-color: #B73232;
     color: white;
 }

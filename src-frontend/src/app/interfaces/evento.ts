@@ -1,4 +1,4 @@
-export interface Evento{
+export interface Evento {
     _id: string,
     titulo: string,
     categoria: string,

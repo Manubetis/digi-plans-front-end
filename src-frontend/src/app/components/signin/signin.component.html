@@ -1,53 +1,54 @@
 <div class="row m-2 d-flex justify-content-center">
-    <div class="col-md-7 mt-4 mb-4 p-4" id="logearse">
-        <h3 class="border-bottom pb-4 mb-3" style="color: white">Iniciar Sesión</h3>
-        <div class="p-5">
-            <form [formGroup]="formulario" (submit)="signIn()" novalidate>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Correo electrónico</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                        <input type="email" class="form-control" id="exampleFormControlInput4" formControlName="email"
-                            [(ngModel)]="user.email" placeholder="Correo electrónico" required>
-                    </div>
-                    <div *ngIf="formulario.get('email')?.errors && formulario.get('email')?.touched">
-                        <p class="errorValidacion m-3" *ngIf="formulario.get('email')?.hasError('required')">El campo es
-                            requerido</p>
-                        <p class="errorValidacion m-3" *ngIf="formulario.get('email')?.hasError('email')">El formato del
-                            correo electrónico es incorrecto</p>
-                        <p *ngIf="formulario.errors?.['emailExists']">El correo electrónico ya está registrado.</p>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Contraseña</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-eye-slash"></i></span>
-                        <input type="password" class="form-control" id="exampleFormControlInput2" formControlName="password"
-                        [(ngModel)]="user.password" placeholder="Contraseña" required>
-                    </div>
-                    <div *ngIf="formulario.get('password')?.errors && formulario.get('password')?.touched">
-                        <p class="errorValidacion m-3" *ngIf="formulario.get('password')?.hasError('required')">El campo
-                            es requerido</p>
-                    </div>
-                </div>
-                <div *ngIf="errorMensaje" class="errorValidacion d-flex justify-content-center">
-                    {{ errorMensaje }}
-                  </div>
-                <br>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="checkSesionAbierta" [checked]="mantenerSesion" (change)="mantenerSesionIniciada()" />
-                    <label class="form-check-label" for="checkSesionAbierta"> Mantener sesión abierta </label>
-                </div>
-                <br>
-                <div class="text-center mb-5">
-                    <p>¿No eres miembro? <a class="page-link text-decoration-underline" id="noMiembro"
-                            routerLink="/signup">Registrarse</a></p>
-                </div>
-                <br>
-                <div class="d-flex justify-content-end border-top pt-4 mt-3">
-                    <button type="submit" [disabled]="formulario.invalid" class="btn btn-primary">Iniciar sesión</button>
-                </div>
-            </form>
+  <div class="col-md-7 mt-4 mb-4 p-4" id="logearse">
+    <h3 class="border-bottom pb-4 mb-3" style="color: white">Iniciar Sesión</h3>
+    <div class="p-5">
+      <form [formGroup]="formulario" (submit)="signIn()" novalidate>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Correo electrónico</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input type="email" class="form-control" id="exampleFormControlInput4" formControlName="email"
+              [(ngModel)]="user.email" placeholder="Correo electrónico" required>
+          </div>
+          <div *ngIf="formulario.get('email')?.errors && formulario.get('email')?.touched">
+            <p class="errorValidacion m-3" *ngIf="formulario.get('email')?.hasError('required')">El campo es
+              requerido</p>
+            <p class="errorValidacion m-3" *ngIf="formulario.get('email')?.hasError('email')">El formato del
+              correo electrónico es incorrecto</p>
+            <p *ngIf="formulario.errors?.['emailExists']">El correo electrónico ya está registrado.</p>
+          </div>
         </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Contraseña</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-eye-slash"></i></span>
+            <input type="password" class="form-control" id="exampleFormControlInput2" formControlName="password"
+              [(ngModel)]="user.password" placeholder="Contraseña" required>
+          </div>
+          <div *ngIf="formulario.get('password')?.errors && formulario.get('password')?.touched">
+            <p class="errorValidacion m-3" *ngIf="formulario.get('password')?.hasError('required')">El campo
+              es requerido</p>
+          </div>
+        </div>
+        <div *ngIf="errorMensaje" class="errorValidacion d-flex justify-content-center">
+          {{ errorMensaje }}
+        </div>
+        <br>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="checkSesionAbierta" [checked]="mantenerSesion"
+            (change)="mantenerSesionIniciada()" />
+          <label class="form-check-label" for="checkSesionAbierta"> Mantener sesión abierta </label>
+        </div>
+        <br>
+        <div class="text-center mb-5">
+          <p>¿No eres miembro? <a class="page-link text-decoration-underline" id="noMiembro"
+              routerLink="/signup">Registrarse</a></p>
+        </div>
+        <br>
+        <div class="d-flex justify-content-end border-top pt-4 mt-3">
+          <button type="submit" [disabled]="formulario.invalid" class="btn btn-primary">Iniciar sesión</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>

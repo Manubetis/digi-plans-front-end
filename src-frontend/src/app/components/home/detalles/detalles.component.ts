@@ -35,7 +35,8 @@ export class DetallesComponent implements OnInit {
       },
       error: (err) => {
         console.log('Ocurrió un error:' + err);
-      }});
+      }
+    });
   }
 
 }

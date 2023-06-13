@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./signin.component.css']
 })
 
-export class SigninComponent{
+export class SigninComponent {
 
   user = {
     email: '',
@@ -40,12 +40,12 @@ export class SigninComponent{
         if (this.mantenerSesion) {
           localStorage.setItem('token', res.token);
           this.router.navigate(['/home']);
-        }else{
+        } else {
           sessionStorage.setItem('token', res.token);
           this.router.navigate(['/home']);
         }
       },
-      (err) =>{
+      (err) => {
         console.log(err);
         this.errorMensaje = 'El correo electrónico o la contraseña esta mal introducido';
       }

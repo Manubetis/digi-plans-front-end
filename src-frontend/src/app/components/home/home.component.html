@@ -69,10 +69,12 @@
 
                       <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small m-3">
                         <li class="mb-1">
-                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" (click)="mostrarEventosCreadosPorUsuario()">Todos mis
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
+                            (click)="mostrarEventosCreadosPorUsuario()">Todos mis
                             eventos</button>
                           <br>
-                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" (click)="obtenerEventosInscritos()">Eventos en
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
+                            (click)="obtenerEventosInscritos()">Eventos en
                             los que estoy inscrito</button>
                           <br>
                           <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
@@ -95,10 +97,11 @@
             <div class="row d-flex justify-content-center">
               <div class="col-10">
                 <div class="row">
-                  <div *ngIf="listaEventosInscritos.length === 0 && eventosCreados.length === 0 && listaEventosFiltrada.length === 0 && mostrarDiv">
+                  <div
+                    *ngIf="listaEventosInscritos.length === 0 && eventosCreados.length === 0 && listaEventosFiltrada.length === 0 && mostrarDiv">
                     <h3>No hay eventos existentes aún sobre la categoría seleccionada.</h3>
                   </div>
-                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActual" id="eventoCard">                    
+                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActual" id="eventoCard">
                     <div class="card text-center" id="imagenCine">
                       <div class="card-header">
                         <h3>{{evento.categoria}}</h3>
@@ -117,7 +120,8 @@
                   <div *ngIf="mostrarDivCreados && eventosPaginaActualEventosCreados.length === 0">
                     <h3>No has creado ningún evento aún.</h3>
                   </div>
-                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActualEventosCreados" id="eventoCard">                    
+                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActualEventosCreados"
+                    id="eventoCard">
                     <div class="card text-center" id="imagenCine">
                       <div class="card-header">
                         <h3>{{evento.categoria}}</h3>
@@ -127,11 +131,11 @@
                         <div class="row">
                           <div class="col">
                             <button class="btn btn-primary d-flex justify-content-start" id="botonBlanco"
-                          [routerLink]="['/editar-evento', evento._id]">Editar</button>
+                              [routerLink]="['/editar-evento', evento._id]">Editar</button>
                           </div>
                           <div class="col">
                             <button class="btn btn-primary d-flex justify-content-start" id="botonRojo"
-                          (click)="eliminarEventoPorId(evento._id)">Eliminar</button>
+                              (click)="eliminarEventoPorId(evento._id)">Eliminar</button>
                           </div>
                         </div>
                         <p class="text-start m-2 detalles" [routerLink]="['/detalles', evento._id]">Ver
@@ -141,10 +145,12 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div *ngIf="listaEventosFiltrada.length === 0 && eventosCreados.length === 0  && listaEventosInscritos.length === 0 && mostrarContenidoInscrito">
+                  <div
+                    *ngIf="listaEventosFiltrada.length === 0 && eventosCreados.length === 0  && listaEventosInscritos.length === 0 && mostrarContenidoInscrito">
                     <h3>No te has inscrito a ningún evento aún.</h3>
                   </div>
-                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActualInscritos" id="eventoCard">
+                  <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActualInscritos"
+                    id="eventoCard">
                     <div class="card text-center" id="imagenCine">
                       <div class="card-header">
                         <h3>{{evento.categoria}}</h3>
