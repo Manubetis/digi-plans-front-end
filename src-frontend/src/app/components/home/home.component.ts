@@ -52,6 +52,36 @@ export class HomeComponent implements OnInit {
     this.mostrarDivInscritos = false;
   }
 
+  getCategoriaImagen(categoria: string): string {
+    let imagen = '';
+
+    switch (categoria) {
+      case 'Fiesta':
+        imagen = 'url(assets/img/donations-keeps-me-going-g8237e311e_1280.jpg)';
+        break;
+      case 'Evento Deportivo':
+        imagen = 'url(assets/img/eventoDeportivo.jpg)';
+        break;
+      case 'Ocio':
+        imagen = 'url(assets/img/ocio.jpg)';
+        break;
+      case 'Comida':
+        imagen = 'url(assets/img/comida.jpg)';
+        break;
+      case 'Cultura':
+        imagen = 'url(assets/img/cultura.jpg)';
+        break;
+      case 'Viajes':
+        imagen = 'url(assets/img/viajes.jpg)';
+        break;
+      case 'Celebraciones':
+        imagen = 'url(assets/img/happy-birthday-g7d78466e6_1280.jpg)';
+        break;
+    }
+
+    return imagen;
+  }
+
   mostrarModalInscribirse(eventoId: string) {
     Swal.fire({
       title: '¿Seguro que quieres inscribirte?',

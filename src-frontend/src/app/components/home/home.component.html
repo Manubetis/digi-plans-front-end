@@ -102,7 +102,7 @@
                     <h3>No hay eventos existentes aún sobre la categoría seleccionada.</h3>
                   </div>
                   <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActual" id="eventoCard">
-                    <div class="card text-center" id="imagenCine">
+                    <div class="card text-center" [ngStyle]="{'background-image': getCategoriaImagen(evento.categoria), 'background-size': 'cover', 'background-position': 'center'}">
                       <div class="card-header">
                         <h3>{{evento.categoria}}</h3>
                       </div>
@@ -122,7 +122,7 @@
                   </div>
                   <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActualEventosCreados"
                     id="eventoCard">
-                    <div class="card text-center" id="imagenCine">
+                    <div class="card text-center" [ngStyle]="{'background-image': getCategoriaImagen(evento.categoria), 'background-size': 'cover', 'background-position': 'center'}">
                       <div class="card-header">
                         <h3>{{evento.categoria}}</h3>
                       </div>
@@ -151,7 +151,7 @@
                   </div>
                   <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActualInscritos"
                     id="eventoCard">
-                    <div class="card text-center" id="imagenCine">
+                    <div class="card text-center" [ngStyle]="{'background-image': getCategoriaImagen(evento.categoria), 'background-size': 'cover', 'background-position': 'center'}">
                       <div class="card-header">
                         <h3>{{evento.categoria}}</h3>
                       </div>

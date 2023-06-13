@@ -1,11 +1,11 @@
 #estiloSideBar {
     width: 100%;
     margin: 2%;
-    background-color: #FF4A4A;
+    background-color: #363636;
 }
 
 #eventos {
-    background-color: #B73232;
+    background-color: #0dc78c;
 }
 
 #categorias {
@@ -38,8 +38,12 @@ hr {
     font-weight: bolder;
 }
 
+li button{
+    color: #4dfcc4;
+}
+
 span {
-    color: red;
+    color: #0dc78c;
 }
 
 .modal-body {
@@ -48,7 +52,8 @@ span {
 }
 
 .card-header {
-    background-color: #B73232;
+    background-color: #4ce0b1;
+    color: white;
 }
 
 .detalles:hover {
@@ -87,30 +92,6 @@ span {
     width: 50%;
 }
 
-#imagenCine {
-    background-image: url('../../../assets/img/man-g7ab3ac403_1280.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-#imagenOcio {
-    background-image: url('../../../assets/img/man-gb68512a41_1280.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-#imagenFiesta {
-    background-image: url('../../../assets/img/donations-keeps-me-going-g8237e311e_1280.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-#imagenCelebracion {
-    background-image: url('../../../assets/img/happy-birthday-g7d78466e6_1280.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
 h4 {
     margin-bottom: 20%;
 }
@@ -124,12 +105,16 @@ a:hover {
     cursor: pointer;
 }
 
+.modal-header {
+    background-color: #0dc78c;
+}
+
 .botonNext {
     background-color: #363636;
     color: white;
 }
 
 .botonPaginas {
-    background-color: #B73232;
+    background-color: #0dc78c;
     color: white;
 }
