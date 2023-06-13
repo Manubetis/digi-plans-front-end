@@ -1,66 +1,74 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-4">
+    <div class="col-md-4">
       <div class="container-fluid">
         <div class="row p-5">
           <div class="col-12">
             <div class="flex-shrink-0 p-3" id="estiloSideBar">
-              <div id="eventos">
-                <h2 class="p-3">Eventos</h2>
+              <div>
+                <ul class="list-unstyled ps-0">
+                  <li class="mb-1">
+                    <div id="eventos">
+                      <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 p-3"
+                        id="misEventosEeventos" data-bs-toggle="collapse" data-bs-target="#home-collapse"
+                        aria-expanded="true">Eventos</button>
+                    </div>
+                    <div class="collapse show" id="home-collapse">
+                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small m-3">
+                        <li class="mb-1">
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
+                            (click)="obtenerEventos()">
+                            Todos los eventos existentes
+                          </button>
+                          <br>
+                          <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
+                            data-bs-toggle="collapse" data-bs-target="#categoria-collapse" aria-expanded="true">
+                            Categorías
+                          </button>
+                          <div class="collapse show" id="categoria-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small m-3">
+                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                  id="categorias" (click)="filtrarEventoPorCategoria('Fiesta')">Fiesta</a>
+                              </li>
+                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                  id="categorias" (click)="filtrarEventoPorCategoria('Evento Deportivo')">Eventos
+                                  Deportivos</a>
+                              </li>
+                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                  id="categorias" (click)="filtrarEventoPorCategoria('Ocio')">Ocio</a>
+                              </li>
+                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                  id="categorias" (click)="filtrarEventoPorCategoria('Comida')">Comida</a>
+                              </li>
+                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                  id="categorias" (click)="filtrarEventoPorCategoria('Cultura')">Eventos de cultura</a>
+                              </li>
+                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                  id="categorias" (click)="filtrarEventoPorCategoria('Viajes')">Viajes</a>
+                              </li>
+                              <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                  id="categorias" (click)="filtrarEventoPorCategoria('Celebraciones')">Celebraciones</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <ul class="list-unstyled ps-0">
-                <li class="mb-1">
-                  <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
-                    (click)="obtenerEventos()">
-                    Todos los eventos existentes
-                  </button>
-                  <br>
-                  <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
-                    data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                    Categorías
-                  </button>
-                  <div class="collapse show" id="home-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small m-3">
-                      <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                          id="categorias" (click)="filtrarEventoPorCategoria('Fiesta')">Fiesta</a>
-                      </li>
-                      <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                          id="categorias" (click)="filtrarEventoPorCategoria('Evento Deportivo')">Eventos Deportivos</a>
-                      </li>
-                      <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                          id="categorias" (click)="filtrarEventoPorCategoria('Ocio')">Ocio</a>
-                      </li>
-                      <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                          id="categorias" (click)="filtrarEventoPorCategoria('Comida')">Comida</a>
-                      </li>
-                      <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                          id="categorias" (click)="filtrarEventoPorCategoria('Cultura')">Eventos de cultura</a>
-                      </li>
-                      <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                          id="categorias" (click)="filtrarEventoPorCategoria('Viajes')">Viajes</a>
-                      </li>
-                      <li class="m-2"><a class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                          id="categorias" (click)="filtrarEventoPorCategoria('Celebraciones')">Celebraciones</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
       <div class="container-fluid">
         <div class="row pt-5">
           <div class="col-12">
             <div class="row d-flex justify-content-center">
               <div class="col-10">
                 <div class="row">
-                  <div *ngIf="listaEventosFiltrada.length === 0">
-                    <h3>No hay eventos existentes aún sobre la categoría seleccionada.</h3>
-                  </div>
                   <div class="col-12 col-md-6 col-lg-4" *ngFor="let evento of eventosPaginaActual" id="eventoCard">
                     <div class="card text-center" [ngStyle]="{'background-image': getCategoriaImagen(evento.categoria), 'background-size': 'cover', 'background-position': 'center'}">
                       <div class="card-header">
@@ -70,7 +78,8 @@
                         <h4 class="card-title text-start">{{evento.titulo}}</h4>
                         <button class="btn btn-primary d-flex justify-content-start" id="botonBlanco"
                           (click)="mostrarModal()">Inscribirse</button>
-                        <p class="text-start m-2 detalles" (click)="mostrarModal()">Ver detalles</p>
+                        <p class="text-start m-2 detalles" (click)="mostrarModal()">Ver
+                          detalles</p>
                       </div>
                     </div>
                   </div>
