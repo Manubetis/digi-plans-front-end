@@ -52,7 +52,7 @@ export class EditarEventosComponent implements OnInit {
     const url = window.location.href;
     const splittedUrl = url.split('/');
 
-    const valorId = splittedUrl[4];
+    const valorId = splittedUrl[5];
 
     this.obtenerEventoPorId(valorId);
   }
@@ -118,7 +118,7 @@ export class EditarEventosComponent implements OnInit {
     const url = window.location.href;
     const splittedUrl = url.split('/');
 
-    const valorId = splittedUrl[4];
+    const valorId = splittedUrl[5];
 
     this.editarEvento(valorId);
   }

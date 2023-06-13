@@ -20,7 +20,7 @@ export class DetallesComponent implements OnInit {
     const url = window.location.href;
     const splittedUrl = url.split('/');
 
-    const valorId = splittedUrl[4];
+    const valorId = splittedUrl[5];
 
     this.obtnerEventoPorId(valorId)
   }
