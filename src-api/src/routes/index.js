@@ -20,6 +20,7 @@ const {
     validateCreateEvent
 } = require('../validaciones/evento');
 
+// Endpoint para iniciar sesión
 router.post('/signin', validateSignIn, async (req, res) => {
     const {
         email,
@@ -45,6 +46,7 @@ router.post('/signin', validateSignIn, async (req, res) => {
 
 });
 
+// Endpoint para registrarse el usuario
 router.post('/signup', validateCreateUser, async (req, res) => {
 
     const {
@@ -80,6 +82,7 @@ router.post('/signup', validateCreateUser, async (req, res) => {
     });
 })
 
+// Endpoinr para la creación de eventos
 router.post('/crear-evento', validateCreateEvent, async (req, res) => {
     const {
         titulo,
@@ -114,6 +117,7 @@ router.post('/crear-evento', validateCreateEvent, async (req, res) => {
     });
 })
 
+// Endpoint para poder inscrbirse un usuario
 router.put('/inscribirUsuario', async (req, res) => {
     try {
         const { usuarioId, eventoId } = req.body;
@@ -141,6 +145,7 @@ router.put('/inscribirUsuario', async (req, res) => {
     }
 });
 
+// Endpoint para que se pueda desinscribirse un usuario
 router.put('/desinscribirUsuario', async (req, res) => {
     try {
       const { usuarioId, eventoId } = req.body;
@@ -169,8 +174,7 @@ router.put('/desinscribirUsuario', async (req, res) => {
     }
   });
   
-
-
+// Endpoitn para obtener los eventos inscritos por el usuario
 router.get('/eventosInscritos/:usuarioId', async (req, res) => {
     try {
         const usuarioId = req.params.usuarioId;
@@ -294,7 +298,7 @@ router.delete('/obtener-eventos/:id', async (req, res) => {
     }
 })
 
-// Metodo
+// Metodo para verificar el token del usuario
 function verifyToken(req, res, next) {
     if (!req.headers.authorization) {
         return res.status(401).send('Unauthorized request');
