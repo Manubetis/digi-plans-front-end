@@ -28,6 +28,5 @@ export class HeaderComponent implements OnInit{
     if(this.usuario.role === 'admin'){
       this.esAdmin = true
     }
-    console.log(this.esAdmin)
   }
 }
