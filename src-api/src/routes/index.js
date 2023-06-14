@@ -120,19 +120,26 @@ router.post('/crear-evento', validateCreateEvent, async (req, res) => {
 // Endpoint para poder inscrbirse un usuario
 router.put('/inscribirUsuario', async (req, res) => {
     try {
-        const { usuarioId, eventoId } = req.body;
+        const {
+            usuarioId,
+            eventoId
+        } = req.body;
 
         // Buscar el usuario y el evento en la base de datos
         const usuario = await User.findById(usuarioId);
-    
+
         // Verificar si el usuario ya está inscrito en el evento
         if (usuario.eventosInscritos.some(e => e.evento.equals(eventoId))) {
-          return res.status(400).json({ error: 'El usuario ya está inscrito en el evento' });
+            return res.status(400).json({
+                error: 'El usuario ya está inscrito en el evento'
+            });
         }
-    
+
         // Agregar la ID del evento al array eventosInscritos del usuario
-        usuario.eventosInscritos.push({ evento: eventoId });
-    
+        usuario.eventosInscritos.push({
+            evento: eventoId
+        });
+
         // Guardar los cambios en el usuario
         await usuario.save();
         res.status(200).json({
@@ -148,32 +155,37 @@ router.put('/inscribirUsuario', async (req, res) => {
 // Endpoint para que se pueda desinscribirse un usuario
 router.put('/desinscribirUsuario', async (req, res) => {
     try {
-      const { usuarioId, eventoId } = req.body;
-  
-      // Buscar el usuario y el evento en la base de datos
-      const usuario = await User.findById(usuarioId);
-  
-      // Verificar si el usuario está inscrito en el evento
-      const eventoIndex = usuario.eventosInscritos.findIndex(e => e.evento.equals(eventoId));
-      if (eventoIndex === -1) {
-        return res.status(400).json({ error: 'El usuario no está inscrito en el evento' });
-      }
-  
-      // Remover la ID del evento del array eventosInscritos del usuario
-      usuario.eventosInscritos.splice(eventoIndex, 1);
-  
-      // Guardar los cambios en el usuario
-      await usuario.save();
-      res.status(200).json({
-        message: 'El usuario ha sido desinscrito del evento'
-      });
+        const {
+            usuarioId,
+            eventoId
+        } = req.body;
+
+        // Buscar el usuario y el evento en la base de datos
+        const usuario = await User.findById(usuarioId);
+
+        // Verificar si el usuario está inscrito en el evento
+        const eventoIndex = usuario.eventosInscritos.findIndex(e => e.evento.equals(eventoId));
+        if (eventoIndex === -1) {
+            return res.status(400).json({
+                error: 'El usuario no está inscrito en el evento'
+            });
+        }
+
+        // Remover la ID del evento del array eventosInscritos del usuario
+        usuario.eventosInscritos.splice(eventoIndex, 1);
+
+        // Guardar los cambios en el usuario
+        await usuario.save();
+        res.status(200).json({
+            message: 'El usuario ha sido desinscrito del evento'
+        });
     } catch (error) {
-      res.status(500).json({
-        error: 'Error al desinscribirse del evento'
-      });
+        res.status(500).json({
+            error: 'Error al desinscribirse del evento'
+        });
     }
-  });
-  
+});
+
 // Endpoitn para obtener los eventos inscritos por el usuario
 router.get('/eventosInscritos/:usuarioId', async (req, res) => {
     try {
@@ -241,7 +253,9 @@ router.get('/obtener-eventos/:id', async (req, res) => {
 // Endpoint para obtener un evento por el creador que se le pase por parámetro
 router.get('/obtener-eventos/creador/:creador', async (req, res) => {
     try {
-        const evento = await Evento.find({ creador: req.params.creador });
+        const evento = await Evento.find({
+            creador: req.params.creador
+        });
         res.json(evento);
     } catch (error) {
         res.status(500).json({
